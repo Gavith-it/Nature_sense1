@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Nature Senses: the estate's own wayfinding system.
+   Lime-washed walls, estate-sign green plates, brass zone discs. Night mode lights the lamps. */
+
+:root {
+  --wall: 243 244 239;
+  --wall-2: 231 233 226;
+  --ink: 16 25 21;
+  --ink-2: 74 86 80;
+  --plate: 23 58 46;
+  --plate-2: 33 74 59;
+  --plate-ink: 243 244 239;
+  --plate-muted: 184 201 191;
+  --brass: 184 146 90;
+  --brass-ink: 128 94 44;
+  --act: 23 58 46;
+  --act-hover: 14 42 33;
+  --act-ink: 243 244 239;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: light;
+}
+
+/* Inside a sign plate the primary action turns brass, so it never disappears into the green. */
+.on-plate, .sign {
+  --act: 214 176 116;
+  --act-hover: 226 194 142;
+  --act-ink: 16 25 21;
+  --brass-ink: 214 176 116;
+}
+
+html[data-time='night'] {
+  --wall: 11 18 15;
+  --wall-2: 20 30 26;
+  --ink: 236 238 231;
+  --ink-2: 164 178 170;
+  --plate: 22 42 35;
+  --plate-2: 32 58 48;
+  --plate-ink: 236 238 231;
+  --plate-muted: 164 184 173;
+  --brass: 240 194 122;
+  --brass-ink: 240 194 122;
+  --act: 240 194 122;
+  --act-hover: 247 212 156;
+  --act-ink: 11 18 15;
+  color-scheme: dark;
+}
+html[data-time="night"] :is(.on-plate, .sign) { --act: 240 194 122; --act-hover: 247 212 156; --act-ink: 11 18 15; }
+
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.35s; animation-timing-function: var(--ease); }
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+    scrollbar-color: rgb(var(--ink) / 0.35) rgb(var(--wall));
+    background: rgb(var(--wall));
+  }
+  html.time-fade, html.time-fade * { transition: background-color 0.6s var(--ease), color 0.6s var(--ease), border-color 0.6s var(--ease) !important; }
+  body {
+    @apply bg-wall font-sans text-ink antialiased;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    font-feature-settings: 'kern', 'liga', 'ss01';
+  }
+  h1, h2, h3, h4 { font-weight: 600; text-wrap: balance; }
+  p, li, dd { text-wrap: pretty; }
+  ::selection { background: rgb(var(--brass) / 0.45); color: rgb(var(--ink)); }
+  :focus-visible { outline: 2px solid rgb(var(--brass-ink)); outline-offset: 3px; border-radius: 6px; }
+  :is(.on-plate, .sign) :focus-visible { outline-color: rgb(var(--act)); }
+  input, select, textarea { caret-color: rgb(var(--brass-ink)); accent-color: rgb(var(--plate)); }
+}
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-site px-5 sm:px-8 lg:px-12; }
+
+  /* One family. Hierarchy from size, weight and rules. */
+  .t-display { font-size: clamp(2.6rem, 6vw, 5.5rem); line-height: 0.98; letter-spacing: -0.035em; font-weight: 600; }
+  .t-h1 { font-size: clamp(2.4rem, 5vw, 4.4rem); line-height: 1; letter-spacing: -0.032em; font-weight: 600; }
+  .t-h2 { font-size: clamp(2rem, 3.6vw, 3.25rem); line-height: 1.04; letter-spacing: -0.028em; font-weight: 600; }
+  .t-h3 { font-size: clamp(1.35rem, 1.8vw, 1.6rem); line-height: 1.2; letter-spacing: -0.015em; font-weight: 600; }
+  .t-lede { font-size: clamp(1.125rem, 1.4vw, 1.3rem); line-height: 1.55; letter-spacing: -0.005em; }
+  .t-small { font-size: 0.9375rem; line-height: 1.5; }
+  .t-label { font-size: 0.9375rem; line-height: 1.2; font-weight: 600; letter-spacing: -0.005em; }
+  .t-figure { font-size: clamp(2rem, 3vw, 2.75rem); line-height: 1; letter-spacing: -0.035em; font-weight: 600; font-variant-numeric: tabular-nums lining-nums; }
+  .num { font-variant-numeric: tabular-nums lining-nums; }
+  .muted { @apply text-ink-2; }
+  :is(.on-plate, .sign) .muted { @apply text-plate-muted; }
+
+  /* A sign plate: the estate's green sign panel. */
+  .sign { @apply rounded-sign bg-plate text-plate-ink; }
+
+  /* A zone disc: the brass numbered roundel from the estate signs. */
+  .disc {
+    @apply inline-flex shrink-0 items-center justify-center rounded-disc bg-brass font-semibold text-ink;
+    width: 1.9rem; height: 1.9rem; font-size: 0.95rem; font-variant-numeric: tabular-nums;
+  }
+  html[data-time='night'] .disc { color: rgb(11 18 15); }
+  .disc-lg { width: 2.6rem; height: 2.6rem; font-size: 1.2rem; }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full px-6 font-semibold transition-colors duration-200;
+    min-height: 3rem; font-size: 0.9875rem; letter-spacing: -0.005em; touch-action: manipulation; cursor: pointer;
+  }
+  .btn-act { @apply btn bg-act text-act-ink hover:bg-act-hover; }
+  .btn-line { @apply btn text-ink hover:bg-ink hover:text-wall; box-shadow: inset 0 0 0 1.5px currentColor; }
+  :is(.on-plate, .sign) .btn-line { @apply text-plate-ink hover:bg-plate-ink hover:text-plate; }
+  .btn-glass { @apply btn text-white; background: rgb(12 18 15 / 0.42); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.35); backdrop-filter: blur(10px); }
+  .btn-glass:hover { background: rgb(12 18 15 / 0.6); }
+
+  .link { @apply inline-flex items-center gap-1.5 font-semibold text-ink underline decoration-brass decoration-2 underline-offset-[6px] transition-colors hover:decoration-ink; }
+  :is(.on-plate, .sign) .link { @apply text-plate-ink hover:decoration-plate-ink; }
+
+  .rule { border-color: rgb(var(--ink) / 0.14); }
+  :is(.on-plate, .sign) .rule { border-color: rgb(var(--plate-ink) / 0.18); }
+
+  .photo { @apply relative overflow-hidden rounded-sign bg-wall-2; }
+}
+
+/* Photos open like a sign being unveiled: a clip that widens as they scroll into view. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .unveil { animation: unveil linear both; animation-timeline: view(); animation-range: entry 0% entry 70%; }
+    @keyframes unveil { from { clip-path: inset(9% 6% 0 6% round 10px); } to { clip-path: inset(0 0 0 0 round 10px); } }
+  }
+}
+
+/* The estate plan: an image stage that covers its frame, so pins stay pinned to real places. */
+.stage-frame { container-type: size; }
+.stage {
+  --sw: max(100cqw, calc(100cqh * var(--ar)));
+  --sh: max(100cqh, calc(100cqw / var(--ar)));
+  position: absolute;
+  width: var(--sw);
+  height: var(--sh);
+  left: calc((100cqw - var(--sw)) * var(--fx, 0.5));
+  top: calc((100cqh - var(--sh)) * var(--fy, 0.5));
+}
+
+.pin-line { stroke-dasharray: 1; stroke-dashoffset: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .hero-in .hero-photo { animation: settle-photo 1.6s var(--ease) both; }
+  .hero-in .pin { animation: pin-in 0.7s var(--ease) both; animation-delay: calc(0.5s + var(--i) * 0.09s); }
+  .hero-in .pin-line { animation: draw 0.8s var(--ease) forwards; animation-delay: calc(0.65s + var(--i) * 0.09s); }
+  .hero-in .hero-plate { animation: rise 0.9s 0.2s var(--ease) both; }
+  @keyframes settle-photo { from { transform: scale(1.06); filter: saturate(0.7) brightness(0.9); } to { transform: none; filter: none; } }
+  @keyframes pin-in { from { opacity: 0; transform: translateY(8px) scale(0.85); } to { opacity: 1; transform: none; } }
+  @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+}
+.pin-line { animation: none; }
+@media (prefers-reduced-motion: reduce), (scripting: none) { .pin-line { stroke-dashoffset: 0; } }
+.hero-done .pin-line { stroke-dashoffset: 0; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+@media (max-width: 767px) { .stage-frame .stage { --fx: 0.6 !important; } }
+
+/* Route line: drawn as it scrolls into view. */
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .route-path { animation: grow linear both; animation-timeline: view(); animation-range: entry 20% cover 55%; }
+    .route-stop { animation: stop-in linear both; animation-timeline: view(); animation-range: entry 30% cover 50%; }
+    @keyframes grow { from { transform: translateY(-50%) scaleX(0); } to { transform: translateY(-50%) scaleX(1); } }
+    @keyframes stop-in { from { opacity: 0.25; } to { opacity: 1; } }
+  }
+}
+
+/* Horizontal strips: native scroll with snap, aligned to the page wrapper. */
+.strip {
+  --gutter: 1.25rem;
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-inline: max(var(--gutter), calc((100vw - 90rem) / 2 + var(--gutter)));
+  scroll-padding-inline: max(var(--gutter), calc((100vw - 90rem) / 2 + var(--gutter)));
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+.strip::-webkit-scrollbar { display: none; }
+.strip > * { scroll-snap-align: start; flex: 0 0 auto; }
+@media (min-width: 640px) { .strip { --gutter: 2rem; gap: 1.25rem; } }
+@media (min-width: 1024px) { .strip { --gutter: 3rem; gap: 1.5rem; } }
+
+/* Night twins crossfade over their day photos. */
+.twin { transition: opacity 0.8s var(--ease); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+}

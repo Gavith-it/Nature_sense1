@@ -1,0 +1,39 @@
+{
+  "project": "Nature Sense Farm Stay",
+  "tone": "Organic / Natural",
+  "canvas": {
+    "background": "#FDFCF7",
+    "name": "Alabaster Linen"
+  },
+  "palette": {
+    "canvas": "#FDFCF7",
+    "surface": "#FFFFFF",
+    "surfaceMuted": "#F5F3EC",
+    "borderSubtle": "rgba(44, 53, 41, 0.08)",
+    "borderGlass": "rgba(255, 255, 255, 0.65)",
+    "textPrimary": "#1C241B",
+    "textSecondary": "#525E50",
+    "textMuted": "#828F80",
+    "primary": "#2D4A3E",
+    "primaryHover": "#22382F",
+    "accent": "#C47B47",
+    "accentSoft": "#F4EAE2",
+    "olive": "#6B7C52",
+    "sage": "#A3B19B"
+  },
+  "typography": {
+    "display": "Fraunces, 'Playfair Display', serif",
+    "body": "Plus Jakarta Sans, 'Inter', sans-serif"
+  },
+  "antigravity": {
+    "blur": "12px",
+    "shadowFloating": "0 20px 40px -15px rgba(28, 36, 27, 0.07)",
+    "shadowCard": "0 10px 25px -5px rgba(28, 36, 27, 0.05)",
+    "transitionDefault": "all 0.35s cubic-bezier(0.16, 1, 0.3, 1)"
+  },
+  "activeSkills": [
+    "frontend-design",
+    "frontend-developer",
+    "antigravity-design-expert"
+  ]
+}

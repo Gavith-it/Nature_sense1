@@ -1,0 +1,47 @@
+:root {
+  /* Canvas & Tone: Organic / Natural */
+  --canvas-bg: #FDFCF7; /* Alabaster Linen */
+  --surface-base: #FFFFFF;
+  --surface-muted: #F5F3EC;
+  --surface-elevated: rgba(255, 255, 255, 0.85);
+
+  /* Botanical & Earth Color System */
+  --color-forest-deep: #1C241B;
+  --color-primary: #2D4A3E; /* Deep Pine / Moss */
+  --color-primary-hover: #22382F;
+  --color-accent: #C47B47; /* Warm Terracotta / Clay */
+  --color-accent-soft: #F4EAE2;
+  --color-olive: #6B7C52;
+  --color-sage: #A3B19B;
+
+  /* Typography Colors */
+  --text-primary: #1C241B;
+  --text-secondary: #525E50;
+  --text-muted: #828F80;
+  --text-inverse: #FDFCF7;
+
+  /* Borders & Dividers */
+  --border-subtle: rgba(44, 53, 41, 0.08);
+  --border-glass: rgba(255, 255, 255, 0.65);
+
+  /* Antigravity Spatial & Motion Tokens */
+  --glass-blur: 12px;
+  --shadow-floating: 0 20px 40px -15px rgba(28, 36, 27, 0.07);
+  --shadow-card: 0 10px 25px -5px rgba(28, 36, 27, 0.05);
+  --shadow-elevated: 0 30px 60px -20px rgba(28, 36, 27, 0.12);
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-transition: 0.35s;
+
+  /* Typography */
+  --font-display: 'Fraunces', 'Playfair Display', serif;
+  --font-body: 'Plus Jakarta Sans', 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--canvas-bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
