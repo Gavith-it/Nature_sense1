@@ -9,6 +9,7 @@ export default {
       // Estate signage colours. Every value is a token that the day / night switch redefines.
       colors: {
         wall: { DEFAULT: v('wall'), 2: v('wall-2') },
+        card: { DEFAULT: v('card') },
         ink: { DEFAULT: v('ink'), 2: v('ink-2') },
         plate: { DEFAULT: v('plate'), 2: v('plate-2'), ink: v('plate-ink'), muted: v('plate-muted') },
         brass: { DEFAULT: v('brass'), ink: v('brass-ink') },

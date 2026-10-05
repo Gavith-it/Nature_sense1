@@ -39,7 +39,7 @@ function Pin({ zone, at, i, open, onToggle }) {
           <span className="disc relative shadow-[0_6px_16px_-6px_rgba(0,0,0,0.6)] ring-2 ring-white">{zone.n}</span>
         </button>
         <div className={`absolute bottom-[calc(50%+3.5rem)] hidden md:block ${flip ? 'right-[-0.5rem]' : 'left-[-0.5rem]'}`}>
-          <div className={`w-max max-w-[15rem] rounded-[8px] bg-[#101915]/80 px-3 py-2 text-white shadow-[0_10px_30px_-12px_rgba(0,0,0,0.7)] backdrop-blur-md transition-all duration-300 ${open ? 'ring-1 ring-brass' : ''}`}>
+          <div className={`w-max max-w-[15rem] rounded-[8px] bg-[#172A22]/85 px-3 py-2 text-white shadow-[0_10px_30px_-12px_rgba(0,0,0,0.7)] backdrop-blur-md transition-all duration-300 ${open ? 'ring-1 ring-brass' : ''}`}>
             <p className="text-[0.92rem] font-semibold leading-tight">{zone.short}</p>
             {open && <p className="mt-1 text-[0.85rem] leading-snug text-white/80">{zone.note}</p>}
           </div>
@@ -66,7 +66,7 @@ export default function EstatePlan({ children, focus = { x: 0.62, y: 0.5 } }) {
   const layers = seenNight ? ['day', 'night'] : ['day'];
 
   return (
-    <div ref={ref} className="stage-frame hero-photo relative h-full w-full overflow-hidden bg-[#1a2420]">
+    <div ref={ref} className="stage-frame hero-photo relative h-full w-full overflow-hidden bg-[#172A22]">
       {layers.map((key) => {
         const plan = PINS[key];
         const on = key === time;
@@ -78,7 +78,7 @@ export default function EstatePlan({ children, focus = { x: 0.62, y: 0.5 } }) {
             aria-hidden={!on}
           >
             <Pic photo={plan.photo} eager={key === 'day'} sizes="100vw" className="absolute inset-0 h-full w-full object-cover" alt={on ? plan.photo.alt : ''} />
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.18)_0%,rgba(0,0,0,0)_30%,rgba(0,0,0,0)_60%,rgba(0,0,0,0.35)_100%)]" aria-hidden="true" />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.25)_0%,rgba(0,0,0,0)_25%,rgba(0,0,0,0.1)_60%,rgba(0,0,0,0.72)_100%)]" aria-hidden="true" />
             {PINNED.map((z, i) => (
               <Pin key={z.n} zone={z} at={plan.spots[z.n]} i={i} open={open === z.n} onToggle={() => setOpen(open === z.n ? null : z.n)} />
             ))}

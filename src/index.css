@@ -6,48 +6,50 @@
    Lime-washed walls, estate-sign green plates, brass zone discs. Night mode lights the lamps. */
 
 :root {
-  --wall: 243 244 239;
-  --wall-2: 231 233 226;
-  --ink: 16 25 21;
-  --ink-2: 74 86 80;
-  --plate: 23 58 46;
-  --plate-2: 33 74 59;
-  --plate-ink: 243 244 239;
-  --plate-muted: 184 201 191;
-  --brass: 184 146 90;
-  --brass-ink: 128 94 44;
-  --act: 23 58 46;
-  --act-hover: 14 42 33;
-  --act-ink: 243 244 239;
+  --wall: 245 241 232;       /* #F5F1E8 warm luxury ivory */
+  --wall-2: 232 227 214;     /* #E8E3D6 soft stone / beige */
+  --card: 255 252 245;       /* #FFFCF5 crisp ivory card */
+  --ink: 37 43 39;           /* #252B27 deep charcoal olive ink */
+  --ink-2: 82 92 86;         /* refined sage charcoal */
+  --plate: 23 42 34;         /* #172A22 deep forest green */
+  --plate-2: 33 58 48;       /* deep forest hover */
+  --plate-ink: 245 241 232;  /* warm ivory on dark green */
+  --plate-muted: 175 192 182;/* muted sage text on dark green */
+  --brass: 167 131 79;       /* #A7834F muted antique gold */
+  --brass-ink: 137 106 61;   /* #896A3D rich aged brass */
+  --act: 167 131 79;         /* #A7834F muted antique gold */
+  --act-hover: 137 106 61;   /* #896A3D rich aged gold hover */
+  --act-ink: 255 255 255;    /* crisp white text */
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   color-scheme: light;
 }
 
 /* Inside a sign plate the primary action turns brass, so it never disappears into the green. */
 .on-plate, .sign {
-  --act: 214 176 116;
-  --act-hover: 226 194 142;
-  --act-ink: 16 25 21;
+  --act: 167 131 79;
+  --act-hover: 184 146 90;
+  --act-ink: 255 255 255;
   --brass-ink: 214 176 116;
 }
 
 html[data-time='night'] {
   --wall: 11 18 15;
   --wall-2: 20 30 26;
-  --ink: 236 238 231;
-  --ink-2: 164 178 170;
-  --plate: 22 42 35;
-  --plate-2: 32 58 48;
-  --plate-ink: 236 238 231;
-  --plate-muted: 164 184 173;
-  --brass: 240 194 122;
-  --brass-ink: 240 194 122;
-  --act: 240 194 122;
-  --act-hover: 247 212 156;
-  --act-ink: 11 18 15;
+  --card: 16 26 21;
+  --ink: 245 241 232;
+  --ink-2: 168 180 173;
+  --plate: 23 42 34;
+  --plate-2: 33 58 48;
+  --plate-ink: 245 241 232;
+  --plate-muted: 168 184 175;
+  --brass: 167 131 79;
+  --brass-ink: 214 176 116;
+  --act: 167 131 79;
+  --act-hover: 184 146 90;
+  --act-ink: 255 255 255;
   color-scheme: dark;
 }
-html[data-time="night"] :is(.on-plate, .sign) { --act: 240 194 122; --act-hover: 247 212 156; --act-ink: 11 18 15; }
+html[data-time="night"] :is(.on-plate, .sign) { --act: 167 131 79; --act-hover: 184 146 90; --act-ink: 255 255 255; }
 
 @view-transition { navigation: auto; }
 ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.35s; animation-timing-function: var(--ease); }
@@ -187,6 +189,59 @@ html[data-time="night"] :is(.on-plate, .sign) { --act: 240 194 122; --act-hover:
 
 /* Night twins crossfade over their day photos. */
 .twin { transition: opacity 0.8s var(--ease); }
+
+@keyframes estateFade {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Botanical foliage gentle breathing breeze animation */
+@keyframes botanicalBreezeLeft {
+  0% {
+    transform: rotate(0deg) scale(1) translateY(0);
+  }
+  33% {
+    transform: rotate(2.4deg) scale(1.018) translateY(-4px) translateX(2px);
+  }
+  66% {
+    transform: rotate(-1.5deg) scale(0.99) translateY(2px) translateX(-1px);
+  }
+  100% {
+    transform: rotate(0deg) scale(1) translateY(0);
+  }
+}
+
+@keyframes botanicalBreezeRight {
+  0% {
+    transform: rotate(0deg) scale(1) translateY(0);
+  }
+  38% {
+    transform: rotate(-2.6deg) scale(1.02) translateY(-5px) translateX(-2px);
+  }
+  72% {
+    transform: rotate(1.6deg) scale(0.985) translateY(3px) translateX(1px);
+  }
+  100% {
+    transform: rotate(0deg) scale(1) translateY(0);
+  }
+}
+
+.animate-botanical-left {
+  transform-origin: 0% 75%;
+  animation: botanicalBreezeLeft 8.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-botanical-right {
+  transform-origin: 100% 75%;
+  animation: botanicalBreezeRight 10s ease-in-out infinite;
+  will-change: transform;
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }

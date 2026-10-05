@@ -1,18 +1,137 @@
 import React from 'react';
 import Layout from '../components/Layout';
-import { ZONE_PHOTOS } from '../components/Directory';
-import { Closing, Disc, Facts, PageHero, Photo, SectionHead } from '../components/ui';
+import { Closing, Disc, Facts, PageHero, Photo, SectionHead, ScrollRevealText } from '../components/ui';
 import { CONTACT, PHOTOS, TIMES, ZONES } from '../site';
+import {
+  Waves,
+  Dumbbell,
+  Crown,
+  Dices,
+  Sparkles,
+  BookOpen,
+  Flower2,
+  Palmtree,
+  Building2,
+  TentTree,
+  Presentation,
+  Wifi,
+  Car,
+} from 'lucide-react';
 
-// What each zone offers, and what it costs if you are visiting just for that.
+// Custom refined SVG line icons for sports & games to match the architectural luxury aesthetic
+const TableTennisIcon = ({ size = 22, strokeWidth = 1.5, className = '', ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+    <circle cx="11" cy="10" r="6" />
+    <path d="M15 15l4 4" />
+    <circle cx="18" cy="7" r="1.5" fill="currentColor" />
+  </svg>
+);
+
+const BilliardsIcon = ({ size = 22, strokeWidth = 1.5, className = '', ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+    <circle cx="12" cy="12" r="9" />
+    <circle cx="12" cy="12" r="4" />
+    <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+  </svg>
+);
+
+const CarromIcon = ({ size = 22, strokeWidth = 1.5, className = '', ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+    <rect x="3.5" y="3.5" width="17" height="17" rx="2" />
+    <circle cx="12" cy="12" r="3" />
+    <circle cx="6.5" cy="6.5" r="1" />
+    <circle cx="17.5" cy="6.5" r="1" />
+    <circle cx="6.5" cy="17.5" r="1" />
+    <circle cx="17.5" cy="17.5" r="1" />
+  </svg>
+);
+
+const KiteIcon = ({ size = 22, strokeWidth = 1.4, className = '', ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+    <path d="M12 2L19 9L12 21L5 9L12 2Z" />
+    <path d="M5 9H19" />
+    <path d="M12 2V21" />
+    <path d="M12 21C13.5 22.5 15.5 22.5 17 21" />
+  </svg>
+);
+
+const FACILITIES_EXPERIENCES = [
+  { name: 'Swimming Pool', icon: Waves },
+  { name: 'Gym', icon: Dumbbell },
+  { name: 'Table Tennis', icon: TableTennisIcon },
+  { name: 'Billiards', icon: BilliardsIcon },
+  { name: 'Carrom', icon: CarromIcon },
+  { name: 'Chess', icon: Crown },
+  { name: 'Board Games', icon: Dices },
+  { name: 'Kids’ Play Area', icon: KiteIcon },
+  { name: 'Library Corner', icon: BookOpen },
+  { name: 'Landscaped Gardens', icon: Flower2 },
+  { name: 'Outdoor Lawn', icon: Palmtree },
+  { name: 'Indoor Event Space', icon: Building2 },
+  { name: 'Outdoor Event Space', icon: TentTree },
+  { name: 'Conference Room', icon: Presentation },
+  { name: 'Complimentary Wi-Fi', icon: Wifi },
+  { name: 'Parking', icon: Car },
+];
+
+// What each facility zone offers, with clean luxury inclusions and no hourly price tags.
 const DETAIL = {
-  reception: { text: 'A double-height lobby with sofas and tall windows, beside the glass-fronted conference room.', rows: [['Hours', 'All day'], ['Visitors', 'Free for all guests']] },
-  rooms: { text: 'A two-storey block where every room has its own balcony, most of them over the pool and lawns.', rows: [['Check-in', `From ${TIMES.checkIn}`], ['Check-out', `By ${TIMES.checkOut}`]] },
-  pool: { text: 'A long pool with a curved shallow end, lined with palms and red crotons, and lit blue after dark.', rows: [['Hours', TIMES.amenities], ['Visitors', 'Adults ₹400, children (5–12) ₹200 per session']] },
-  play: { text: 'Slides, swings, a see-saw and a roundabout on sand, with shaded gazebos alongside for parents.', rows: [['Hours', 'Open to all guests'], ['Visitors', 'Free']] },
-  lawn: { text: 'Open lawns for games and gatherings, and paved paths that light up in the evening for a walk after dinner.', rows: [['Hours', 'All day'], ['Events', 'Party lawn for up to 50 guests']] },
-  kitchen: { text: 'The dining hall where day-out lunches and hi-tea are served and event menus are cooked.', rows: [['Hours', 'Meal times'], ['Menus', 'See day out and event packages']] },
-  games: { text: 'A full-size billiards table, table tennis, carrom and board games, and a gym with cardio machines and free weights.', rows: [['Hours', TIMES.amenities], ['Visitors', 'Table tennis ₹250/hr, billiards ₹500/hr, carrom ₹200/hr, gym ₹500 a session. Board games free with a ₹200 deposit.']] },
+  pool: {
+    name: 'Pool',
+    text: 'A refreshing morning plunge into crystal-clear filtered waters surrounded by lush coconut palms and flowering shrubs, featuring a child-friendly curved shallow end.',
+    rows: [
+      ['Hours', TIMES.amenities],
+      ['Features', 'Filtered water, shallow end for kids & poolside sun loungers'],
+      ['Access', 'Complimentary for staying guests & day package visitors'],
+    ],
+  },
+  lawn: {
+    name: 'Party and Lawns',
+    text: 'Spacious manicured open lawns and shaded pergolas, ideal for outdoor gatherings, team games, celebrations, and relaxing evening walks under illuminated pathways.',
+    rows: [
+      ['Hours', 'Open all day to guests'],
+      ['Capacity', 'Accommodates up to 200–400 guests for events & parties'],
+      ['Setting', 'Expansive party lawns, white pergola seating & stone walkways'],
+    ],
+  },
+  games: {
+    name: 'Games and Gym',
+    text: 'A full-size billiards table, table tennis, carrom, chess and board games, alongside an air-conditioned fitness gym with cardio machines and free weights in shaded comfort.',
+    rows: [
+      ['Hours', TIMES.amenities],
+      ['Indoor Games', 'Billiards table, table tennis, carrom & board games'],
+      ['Fitness Gym', 'Cardio machines and strength training free weights'],
+      ['Access', 'Complimentary equipment for staying guests & package visitors'],
+    ],
+  },
+  'event-space': {
+    name: 'Indoor Event Space',
+    text: 'Air-conditioned conference and banquet hall with tall windows, acoustic treatment, and lounge seating, perfect for corporate offsites, workshops, and private celebrations.',
+    rows: [
+      ['Capacity', '10 to 200 guests with flexible seating layouts'],
+      ['Amenities', 'Air conditioning, high-speed Wi-Fi, audio-visual support'],
+      ['Ideal for', 'Team offsites, meetings, family gatherings & ceremonies'],
+    ],
+  },
+  play: {
+    name: 'Children Play',
+    text: 'Sand pits, swings, slides, a see-saw and roundabout nestled safely by the lawns, where children play freely while parents relax under shaded gazebos.',
+    rows: [
+      ['Hours', 'Open all day to guests'],
+      ['Equipment', 'Swings, slides, roundabout, see-saw and sand pit'],
+      ['Safety', 'Child-safe enclosed play area with adjacent gazebos'],
+      ['Access', 'Free for all staying and day guests'],
+    ],
+  },
+  kitchen: {
+    name: 'Kitchen',
+    text: 'Good food is an essential part of every getaway. Our Farm Kitchen brings together freshly prepared flavours across South Indian, North Indian and Chinese cuisines, offering something for every palate in a relaxed countryside setting.',
+    rows: [
+      ['Cuisines', 'South Indian, North Indian & Chinese'],
+      ['Setting', 'Spacious countryside dining hall'],
+      ['Hours', 'Breakfast, Lunch, Hi-Tea & Dinner'],
+    ],
+  },
 };
 
 const RULES = [
@@ -22,26 +141,126 @@ const RULES = [
   ['Booking', `Book in advance by phone (${CONTACT.phone}) or email.`],
 ];
 
+const FACILITY_ZONES = [
+  { n: 1, key: 'pool', name: 'Pool', short: 'Pool' },
+  { n: 2, key: 'lawn', name: 'Party and Lawns', short: 'Party and Lawns' },
+  { n: 3, key: 'games', name: 'Games and Gym', short: 'Games and Gym' },
+  { n: 4, key: 'event-space', name: 'Indoor Event Space', short: 'Indoor Event Space' },
+  { n: 5, key: 'play', name: 'Children Play', short: 'Children Play' },
+  { n: 6, key: 'kitchen', name: 'Kitchen', short: 'Kitchen' },
+];
+
+const FACILITY_PHOTOS = {
+  pool: PHOTOS.poolSunset,
+  lawn: PHOTOS.pergolaLawn,
+  games: PHOTOS.clubhouse,
+  'event-space': PHOTOS.lobby,
+  play: PHOTOS.playSunset,
+  kitchen: PHOTOS.kitchen,
+};
+
 export default function Facilities() {
   return (
     <Layout page="facilities">
-      <PageHero
-        title="Pool, play and space to unwind"
-        intro="Everything here is free when you stay and included in day-out packages. Visiting for one activity? Pay per session, as listed below."
-        photo={PHOTOS.aerialDay}
-        position="50% 55%"
-        facts={[
-          ['Open', `Pool, gym and games, ${TIMES.amenities}`],
-          ['Staying guests', 'Everything included'],
-          ['Day guests', 'Included in day-out packages'],
-        ]}
-      />
+      {/* 
+        PRESERVED CODE - Previous PageHero style:
+        <PageHero
+          title="Pool, play and space to unwind"
+          intro="Everything here is free when you stay and included in day-out packages. Visiting for one activity? Pay per session, as listed below."
+          photo={PHOTOS.aerialDay}
+          position="50% 55%"
+          facts={[
+            ['Open', `Pool, gym and games, ${TIMES.amenities}`],
+            ['Staying guests', 'Everything included'],
+            ['Day guests', 'Included in day-out packages'],
+          ]}
+        />
+      */}
+
+      {/* 1. Hero Section: Clean, Cinematic Photography with Breadcrumb & Headline */}
+      <section className="relative overflow-hidden bg-wall-2">
+        <div className="relative h-[56svh] min-h-[22rem] max-h-[42rem] lg:h-[min(72svh,48rem)] lg:max-h-none">
+          <Photo
+            photo={PHOTOS.aerialDay}
+            night="nightEstate"
+            eager
+            unveil={false}
+            rounded={false}
+            position="50% 55%"
+            sizes="100vw"
+            className="absolute inset-0 h-full w-full"
+          />
+          {/* Subtle gradient overlay to ensure crystal-clear text legibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/50" />
+
+          {/* Centered Hero Content */}
+          <div className="absolute inset-0 flex flex-col justify-end pb-12 sm:pb-16 lg:pb-20">
+            <div className="wrap w-full text-center">
+              <nav className="inline-flex items-center gap-2 rounded-full bg-black/40 backdrop-blur-md border border-white/15 px-4 py-1.5 text-[0.8rem] uppercase tracking-[0.2em] text-white/80 mb-4" aria-label="Breadcrumb">
+                <a href="/" className="hover:text-white transition-colors">Home</a>
+                <span className="text-white/40">›</span>
+                <span className="text-[#E5CA8F] font-medium">Facilities</span>
+              </nav>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-[-0.028em] drop-shadow-sm max-w-4xl mx-auto leading-[1.12]">
+                Facilities & Experiences
+              </h1>
+              <p className="mt-4 text-sm sm:text-base lg:text-lg text-white/85 max-w-2xl mx-auto leading-relaxed font-light">
+                Everything you need to relax, play and make the most of your stay, surrounded by the peaceful charm of nature.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Facilities & Experiences Section - Compact Luxury Architectural Layout (Preserves 6-6-4 structure, reduced scale) */}
+      <section className="py-10 sm:py-14 lg:py-18" aria-labelledby="facilities-intro-title">
+        <div className="wrap max-w-5xl mx-auto text-center px-4 sm:px-6">
+          <span className="text-[0.7rem] uppercase tracking-[0.25em] font-medium text-[#A7834F]">
+            Estate Amenities &amp; Activities
+          </span>
+          <h2
+            id="facilities-intro-title"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] font-serif text-ink mt-2 tracking-[-0.02em] leading-tight"
+          >
+            Facilities &amp; <span className="italic text-[#A7834F] font-serif">Experiences.</span>
+          </h2>
+          <ScrollRevealText
+            content="Everything you need to relax, play and make the most of your stay, surrounded by the peaceful charm of nature."
+            className="mt-3 text-sm sm:text-base md:text-lg text-ink/75 leading-relaxed max-w-xl mx-auto font-light"
+          />
+
+          {/* Concentric Double-Ring Luxury Amenities Grid - Compact 6-6-4 structure directly on page */}
+          <div className="mt-8 sm:mt-11 flex flex-wrap justify-center gap-x-4 sm:gap-x-6 lg:gap-x-7 xl:gap-x-8 gap-y-6 sm:gap-y-7 lg:gap-y-8 max-w-5xl mx-auto">
+            {FACILITIES_EXPERIENCES.map((item) => {
+              const IconComponent = item.icon;
+              return (
+                <div
+                  key={item.name}
+                  className="group flex flex-col items-center text-center w-[calc(50%-0.6rem)] sm:w-[calc(25%-0.85rem)] lg:w-[110px] xl:w-[118px] cursor-default"
+                >
+                  {/* Concentric Double-Ring Circle (Refined, Compact Scale) */}
+                  <div className="relative flex h-14 w-14 sm:h-15 sm:w-15 lg:h-16 lg:w-16 items-center justify-center rounded-full border border-[#A7834F]/45 p-1.5 transition-all duration-300 group-hover:scale-105 group-hover:border-[#A7834F]">
+                    <div className="flex h-full w-full items-center justify-center rounded-full border border-[#A7834F]/30 text-[#A7834F] transition-all duration-300 group-hover:bg-[#172A22] group-hover:border-[#172A22] group-hover:text-[#F5F1E8]">
+                      <IconComponent size={20} strokeWidth={1.4} aria-hidden="true" />
+                    </div>
+                  </div>
+
+                  {/* Clean Tracked Uppercase Label */}
+                  <span className="mt-2.5 text-[0.62rem] sm:text-[0.66rem] lg:text-[0.69rem] font-semibold uppercase tracking-[0.14em] text-ink/90 transition-colors duration-200 group-hover:text-[#A7834F] leading-tight">
+                    {item.name}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       <section className="py-16 lg:py-28" aria-labelledby="zones-title">
         <div className="wrap">
           <SectionHead id="zones-title" title="Around the estate" intro="Numbered as on the signs you will see when you arrive." />
           <nav aria-label="Zones" className="mt-8 flex flex-wrap gap-2">
-            {ZONES.map((z) => (
+            {FACILITY_ZONES.map((z) => (
               <a key={z.key} href={`#${z.key}`} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-ink/[0.06] py-1 pl-1 pr-4 font-medium transition-colors hover:bg-ink/[0.1]">
                 <Disc n={z.n} /> {z.short}
               </a>
@@ -49,15 +268,14 @@ export default function Facilities() {
           </nav>
 
           <div className="mt-14 space-y-16 lg:mt-20 lg:space-y-24">
-            {ZONES.map((z, i) => {
+            {FACILITY_ZONES.map((z, i) => {
               const d = DETAIL[z.key];
-              const photo = ZONE_PHOTOS[z.key];
+              const photo = FACILITY_PHOTOS[z.key];
               return (
                 <section key={z.key} id={z.key} className="grid scroll-mt-24 items-center gap-8 lg:grid-cols-12 lg:gap-12" aria-labelledby={`h-${z.key}`}>
                   {photo ? (
                     <Photo
                       photo={photo}
-                      position={z.key === 'reception' ? '50% 60%' : undefined}
                       sizes="(min-width: 1024px) 55vw, 100vw"
                       className={`aspect-[4/3] lg:col-span-7 ${i % 2 ? 'lg:order-2 lg:col-start-6' : ''}`}
                     />
@@ -70,7 +288,7 @@ export default function Facilities() {
                     </div>
                   )}
                   <div className={`lg:col-span-5 ${i % 2 ? 'lg:order-1 lg:col-start-1 lg:row-start-1' : ''}`}>
-                    <h3 id={`h-${z.key}`} className="sign inline-flex items-start gap-4 px-5 py-4 text-[clamp(1.5rem,2.4vw,2.1rem)] font-semibold leading-[1.1] tracking-[-0.025em]"><Disc n={z.n} lg className="mt-0.5" /><span>{z.name}</span></h3>
+                    <h3 id={`h-${z.key}`} className="sign inline-flex items-start gap-4 px-5 py-4 text-[clamp(1.5rem,2.4vw,2.1rem)] font-semibold leading-[1.1] tracking-[-0.025em]"><Disc n={z.n} lg className="mt-0.5" /><span>{d.name || z.name}</span></h3>
                     <p className="t-lede muted mt-5">{d.text}</p>
                     <Facts rows={d.rows} className="mt-7" />
                   </div>
@@ -78,7 +296,7 @@ export default function Facilities() {
               );
             })}
           </div>
-          <p className="muted mt-16">Planning a meeting? The conference room seats 10 to 15. <a href="/events/" className="link">Meeting rates</a></p>
+          <p className="muted mt-16">Planning a celebration or gathering? Indoor and outdoor spaces accommodate 10 to 400 guests. <a href="/packages/" className="link">Explore Event Packages</a></p>
         </div>
       </section>
 

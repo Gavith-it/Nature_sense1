@@ -5,6 +5,11 @@ node_modules/
 dist/
 dist-ssr/
 
+# Test artifacts
+screenshots/
+test-results/
+playwright-report/
+
 # Environment variables
 .env
 .env.local

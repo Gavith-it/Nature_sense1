@@ -103,7 +103,7 @@ function PackageTable() {
           </button>
         ))}
       </div>
-      <div id="pkg-panel" role="tabpanel" aria-labelledby={`tab-${tab}`} className="mt-8 overflow-x-auto rounded-sign bg-wall p-5 sm:p-8">
+      <div id="pkg-panel" role="tabpanel" aria-labelledby={`tab-${tab}`} className="mt-8 overflow-x-auto rounded-sign bg-card border border-ink/8 shadow-sm p-5 sm:p-8">
         <table className={`w-full border-collapse text-left ${tab === 'veg' ? 'min-w-[20rem]' : 'min-w-[32rem]'}`}>
           <caption className="sr-only">Number of dishes per course in each {tab === 'veg' ? 'vegetarian' : 'non-vegetarian'} package</caption>
           <thead>

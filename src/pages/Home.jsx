@@ -3,6 +3,7 @@ import { ArrowRight, ChevronLeft, ChevronRight, MessageCircle } from 'lucide-rea
 import Layout from '../components/Layout';
 import EstatePlan, { PINNED } from '../components/EstatePlan';
 import Directory from '../components/Directory';
+import SunEstateJourney from '../components/SunEstateJourney';
 import RouteLines from '../components/RouteLines';
 import { TimeSwitch } from '../components/time';
 import { BookButton, Closing, Disc, Facts, Photo, Pic, SectionHead } from '../components/ui';
@@ -12,23 +13,15 @@ const WAYS = [
   {
     href: '/stay/',
     title: 'Stay the night',
-    text: 'Balcony rooms over the pool and lawns. Pool, gym and games included.',
-    from: '₹3,500',
+    text: 'Balcony rooms and luxury glamping tents overlooking the pool and lawns. Swimming pool, gym, and outdoor games included.',
+    from: '₹3,000',
     unit: 'a room a night',
     photo: PHOTOS.balconyPoolView,
   },
   {
-    href: '/day-out/',
-    title: 'Spend the day',
-    text: 'Arrive at ten, swim and play, lunch at Farm Kitchen, home after hi-tea.',
-    from: '₹2,000',
-    unit: 'a person, meals included',
-    photo: PHOTOS.poolSunset,
-  },
-  {
     href: '/events/',
     title: 'Gather and celebrate',
-    text: 'Parties on the lawn for up to 50, or a meeting room for your team.',
+    text: 'Host your celebrations in our indoor banquet hall or beautiful outdoor lawns, accommodating up to 200-400 guests, with a complimentary buffet lunch or dinner included with selected party packages.',
     from: '₹799',
     unit: 'a guest for party menus',
     photo: PHOTOS.playLawn,
@@ -56,19 +49,26 @@ const DAY = [
 function Hero() {
   return (
     <section className="hero-in relative pt-[5.25rem] md:pt-0" aria-labelledby="hero-title">
-      <div className="relative aspect-[4/3] md:aspect-auto md:h-[100svh] md:min-h-[40rem] md:max-h-[64rem]">
+      <div className="relative h-[85svh] min-h-[36rem] md:h-[100svh] md:min-h-[42rem] md:max-h-[64rem]">
         <EstatePlan />
-      </div>
 
-      <div className="wrap relative -mt-10 md:absolute md:inset-x-0 md:bottom-8 md:mt-0 lg:bottom-10">
-        <div className="hero-plate sign p-6 sm:p-8 md:max-w-[34rem] lg:max-w-[36rem] lg:p-10">
-          <h1 id="hero-title" className="t-display">A farm stay an hour from Bangalore</h1>
-          <p className="t-lede muted mt-5 max-w-[32rem]">
-            White, modern buildings in open farmland near Denkanikottai. Stay the night, spend the day, or bring everyone for a celebration.
-          </p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <BookButton />
-            <a href={WA_HELLO} className="btn-line"><MessageCircle size={18} strokeWidth={1.8} aria-hidden="true" /> WhatsApp us</a>
+        <div className="wrap on-plate pointer-events-none absolute inset-x-0 bottom-4 z-10 sm:bottom-5 md:bottom-6 lg:bottom-7">
+          <div className="hero-plate pointer-events-auto mx-auto max-w-[42rem] text-center">
+            <h1
+              id="hero-title"
+              className="text-2xl sm:text-3xl md:text-[2.25rem] lg:text-[2.6rem] font-semibold tracking-[-0.02em] leading-tight text-[#E5CA8F] drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]"
+            >
+              Discover Nature Senses Farm Stay
+            </h1>
+            <p className="mt-2 text-sm sm:text-base md:text-[1.05rem] text-[#F5F3ED]/90 drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)] font-normal">
+              A serene countryside escape where nature meets refined comfort
+            </p>
+            <div className="mt-4 sm:mt-5 flex flex-wrap items-center justify-center gap-3">
+              <BookButton className="shadow-lg shadow-black/30" />
+              <a href={WA_HELLO} className="btn-glass shadow-lg shadow-black/30">
+                <MessageCircle size={18} strokeWidth={1.8} aria-hidden="true" /> WhatsApp us
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -89,35 +89,144 @@ function Hero() {
   );
 }
 
+function Welcome() {
+  const textRef = useRef(null);
+
+  const content =
+    "Surrounded by lush greenery, unwind in thoughtfully designed stays, enjoy curated leisure experiences, and savour fresh flavours from our Farm Kitchen — all crafted for a refreshing getaway away from the city.";
+
+  const words = content.split(' ');
+
+  useEffect(() => {
+    let ticking = false;
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (textRef.current) {
+            const spans = textRef.current.querySelectorAll('.reveal-word');
+            const vh = window.innerHeight;
+            const startY = vh * 0.85;
+            const endY = vh * 0.40;
+            const isNight = document.documentElement.dataset.time === 'night';
+            const activeColor = isNight ? '#F5F1E8' : '#252B27';
+            const idleColor = isNight ? '#828E86' : '#9EA7A1';
+
+            spans.forEach((span) => {
+              const rect = span.getBoundingClientRect();
+              const progress = Math.min(Math.max((startY - rect.top) / (startY - endY), 0), 1);
+
+              if (progress >= 0.85) {
+                span.style.color = activeColor;
+                span.style.opacity = '1';
+                span.style.fontWeight = '500';
+              } else if (progress <= 0.1) {
+                span.style.color = idleColor;
+                span.style.opacity = '0.35';
+                span.style.fontWeight = '400';
+              } else {
+                span.style.color = activeColor;
+                span.style.opacity = (0.35 + progress * 0.65).toFixed(2);
+                span.style.fontWeight = progress > 0.5 ? '500' : '400';
+              }
+            });
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    onScroll();
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, []);
+
+  return (
+    <section className="relative py-12 sm:py-16 md:py-20 overflow-hidden" aria-labelledby="welcome-title">
+      {/* Botanical Foliage - Left Branch with gentle breeze breathing movement */}
+      <div
+        className="pointer-events-none absolute -left-28 sm:-left-20 md:-left-24 lg:-left-20 xl:-left-12 top-1/2 -translate-y-1/2 z-0 w-44 sm:w-56 md:w-64 lg:w-80 xl:w-96 select-none opacity-40 sm:opacity-85 mix-blend-multiply dark:opacity-25 -rotate-6"
+        aria-hidden="true"
+      >
+        <img
+          src="/img/botanical-branch-left.png"
+          alt=""
+          className="w-full h-auto object-contain animate-botanical-left drop-shadow-[0_4px_16px_rgba(37,43,39,0.06)]"
+          loading="lazy"
+        />
+      </div>
+
+      {/* Botanical Foliage - Right Branch with gentle breeze breathing movement */}
+      <div
+        className="pointer-events-none absolute -right-28 sm:-right-20 md:-right-24 lg:-right-20 xl:-right-12 top-1/2 -translate-y-1/2 z-0 w-44 sm:w-56 md:w-64 lg:w-80 xl:w-96 select-none opacity-40 sm:opacity-85 mix-blend-multiply dark:opacity-25 rotate-6"
+        aria-hidden="true"
+      >
+        <img
+          src="/img/botanical-branch-right.png"
+          alt=""
+          className="w-full h-auto object-contain animate-botanical-right drop-shadow-[0_4px_16px_rgba(37,43,39,0.06)]"
+          loading="lazy"
+        />
+      </div>
+
+      <div className="wrap max-w-3xl mx-auto text-center px-4 sm:px-6 relative z-10">
+        <h2 id="welcome-title" className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink mb-3 sm:mb-4">
+          Welcome
+        </h2>
+        <p
+          ref={textRef}
+          className="text-base sm:text-lg md:text-xl lg:text-[1.35rem] leading-relaxed md:leading-[1.7] tracking-normal"
+        >
+          {words.map((word, i) => (
+            <span
+              key={i}
+              className="reveal-word inline-block mr-[0.26em] transition-all duration-150 ease-out"
+              style={{ color: '#9EA7A1', opacity: 0.35, fontWeight: 400 }}
+            >
+              {word}
+            </span>
+          ))}
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function Ways() {
   return (
     <section className="py-16 lg:py-28" aria-labelledby="ways-title">
       <div className="wrap">
         <SectionHead
           id="ways-title"
-          title="Three ways to visit"
-          intro="Pick the one that fits your group. Prices are per room or per person, plus GST."
+          title="Ways to visit"
+          intro="Choose the experience that fits your plans. Prices are per room or per guest, plus GST."
         />
-        <ul className="mt-10 grid gap-5 md:grid-cols-3 lg:mt-14 lg:gap-6">
+        <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:mt-14 lg:gap-8">
           {WAYS.map((w) => (
             <li key={w.href}>
               <a href={w.href} className="group block">
-                <Photo photo={w.photo} sizes="(min-width: 768px) 32vw, 100vw" className="aspect-[4/3] md:aspect-[3/4]">
-                  <span className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0)_45%,rgba(0,0,0,0.55)_100%)]" aria-hidden="true" />
-                  <span className="absolute inset-x-0 bottom-0 p-5 text-white lg:p-6">
+                <Photo photo={w.photo} sizes="(min-width: 640px) 48vw, 100vw" className="aspect-[4/3] sm:aspect-[16/11] lg:aspect-[16/10]">
+                  <span className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0)_40%,rgba(0,0,0,0.6)_100%)]" aria-hidden="true" />
+                  <span className="absolute inset-x-0 bottom-0 p-5 text-white lg:p-7">
                     <span className="block text-[0.9rem] text-white/80">From</span>
-                    <span className="num block text-[2.25rem] font-semibold leading-none tracking-[-0.035em]">{w.from}</span>
-                    <span className="mt-1 block text-[0.9rem] text-white/80">{w.unit}</span>
+                    <span className="num block text-[2.25rem] lg:text-[2.6rem] font-semibold leading-none tracking-[-0.035em]">{w.from}</span>
+                    <span className="mt-1.5 block text-[0.9rem] text-white/80">{w.unit}</span>
                   </span>
                 </Photo>
                 {/* A directional sign: the way, and an arrow pointing to it. */}
-                <span className="sign mt-3 flex items-center justify-between gap-4 px-5 py-4 transition-colors duration-200 group-hover:bg-plate-2">
-                  <span className="text-[1.35rem] font-semibold tracking-[-0.02em]">{w.title}</span>
-                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-brass text-[#101915] transition-transform duration-300 ease-out group-hover:translate-x-1" aria-hidden="true">
+                <span className="sign mt-3 flex items-center justify-between gap-4 px-5 py-4 sm:px-6 sm:py-5 transition-colors duration-200 group-hover:bg-plate-2">
+                  <span className="text-[1.35rem] sm:text-[1.48rem] font-semibold tracking-[-0.02em]">{w.title}</span>
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-brass text-white transition-transform duration-300 ease-out group-hover:translate-x-1" aria-hidden="true">
                     <ArrowRight size={20} strokeWidth={2} />
                   </span>
                 </span>
-                <span className="muted mt-3 block max-w-[24rem] px-1">{w.text}</span>
+                <span className="muted mt-3 block px-1 text-sm sm:text-[0.95rem] leading-relaxed">{w.text}</span>
               </a>
             </li>
           ))}
@@ -188,7 +297,7 @@ function Rooms() {
       <div className="wrap grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
         <Photo photo={PHOTOS.bed} sizes="(min-width: 1024px) 55vw, 100vw" className="aspect-[4/3] lg:col-span-7 lg:aspect-[7/5]" />
         <div className="lg:col-span-5">
-          <SectionHead inline id="rooms-title" zone={2} title="Rooms that open onto the farm" />
+          <SectionHead inline id="rooms-title" zone={2} title="Farm Stay" />
           <p className="t-lede muted mt-5">Superior rooms and tent rooms, each with a private balcony. Inside: split AC, a TV and work desk, a mini fridge, tea and coffee, and an attached bathroom with hot water all day.</p>
           <Facts
             className="mt-8"
@@ -203,23 +312,30 @@ function Rooms() {
           </div>
         </div>
       </div>
-      <RoomStrip />
+      {/* 
+        PRESERVED CODE - "In every room" carousel:
+        <RoomStrip /> 
+      */}
     </section>
   );
 }
 
 function Estate() {
   return (
-    <section className="py-16 lg:py-28" aria-labelledby="estate-title">
-      <div className="wrap">
-        <SectionHead
-          id="estate-title"
-          title="Around the estate"
-          intro={`Everything here is included when you stay. The pool, gym and games are open ${TIMES.amenities}.`}
-          aside={<a href="/facilities/" className="link">Facilities and visitor rates</a>}
-        />
-        <div className="mt-10 lg:mt-14"><Directory /></div>
-      </div>
+    <section id="around-estate" className="py-6 lg:py-10" aria-label="Around the estate">
+      <SunEstateJourney />
+      {/* 
+        PRESERVED CODE - Original Directory:
+        <div className="wrap">
+          <SectionHead
+            id="estate-title"
+            title="Around the estate"
+            intro={`Everything here is included when you stay. The pool, gym and games are open ${TIMES.amenities}.`}
+            aside={<a href="/facilities/" className="link">Facilities and visitor rates</a>}
+          />
+          <div className="mt-10 lg:mt-14"><Directory /></div>
+        </div>
+      */}
     </section>
   );
 }
@@ -229,17 +345,24 @@ function DayOut() {
     <section className="rule border-t py-16 lg:py-28" aria-labelledby="day-title">
       <div className="wrap grid gap-10 lg:grid-cols-12 lg:gap-12">
         <div className="lg:col-span-5">
-          <SectionHead inline id="day-title" zone={6} title="A day out, with lunch at Farm Kitchen" />
-          <p className="t-lede muted mt-5">A full, freshly cooked lunch and an evening hi-tea of bhajji, cutlets and filter coffee. Vegetarian from ₹2,000 a person, non-vegetarian from ₹2,200, plus GST.</p>
-          <ol className="mt-8">
-            {DAY.map(([t, d]) => (
-              <li key={t} className="rule grid grid-cols-[6.5rem_1fr] gap-4 border-t py-3 last:border-b">
-                <span className="num font-semibold">{t}</span>
-                <span className="muted">{d}</span>
-              </li>
-            ))}
-          </ol>
-          <p className="mt-8"><a href="/day-out/" className="link">Day out packages and menus</a></p>
+          <SectionHead inline id="day-title" zone={6} title="Farm Kitchen" />
+          <p className="t-lede muted mt-5">
+            Good food is an essential part of every getaway. Our Farm Kitchen brings together freshly prepared flavours across South Indian, North Indian and Chinese cuisines, offering something for every palate in a relaxed countryside setting.
+          </p>
+          <Facts
+            className="mt-8"
+            rows={[
+              ['Cuisines', 'South Indian, North Indian & Chinese'],
+              ['Setting', 'Spacious countryside dining hall'],
+              ['Hours', 'Breakfast, Lunch, Hi-Tea & Dinner'],
+            ]}
+          />
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
+            <a href="/facilities/#kitchen" className="link font-medium text-ink hover:text-[#A7834F]">
+              Explore Farm Kitchen &rarr;
+            </a>
+            <a href="/day-out/" className="link">Day packages &amp; menus</a>
+          </div>
         </div>
         <Photo photo={PHOTOS.kitchen} sizes="(min-width: 1024px) 55vw, 100vw" className="aspect-[4/3] lg:col-span-7 lg:aspect-auto lg:min-h-[36rem]" />
       </div>
@@ -250,7 +373,7 @@ function DayOut() {
 // A full-width night plate, and the switch that lights the whole site.
 function AfterDark() {
   return (
-    <section className="relative isolate overflow-hidden bg-[#0B120F] text-white" aria-labelledby="night-title">
+    <section className="relative isolate overflow-hidden bg-[#172A22] text-white" aria-labelledby="night-title">
       <Pic photo={PHOTOS.aerialNight} sizes="100vw" position="50% 45%" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-90" />
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(6,10,8,0.85)_0%,rgba(6,10,8,0.45)_45%,rgba(6,10,8,0)_75%)]" aria-hidden="true" />
       <div className="wrap flex min-h-[34rem] flex-col justify-end py-14 lg:min-h-[44rem] lg:py-20">
@@ -282,6 +405,7 @@ export default function Home() {
   return (
     <Layout page="home" floating>
       <Hero />
+      <Welcome />
       <Ways />
       <Rooms />
       <Estate />

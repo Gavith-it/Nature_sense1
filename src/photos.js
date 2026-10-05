@@ -29,6 +29,7 @@ export const PHOTOS = {
   fridge: v2('fridge', 1448, 1086, 'Mini fridge below the tea tray inside the wardrobe unit'),
   wardrobe: v2('wardrobe', 1448, 1086, 'Wooden wardrobe with a tea and coffee shelf'),
   toiletries: v2('toiletries', 1448, 1086, 'Toiletries kit on a tray: soap, shower cap, dental kits and bottles'),
+  tentRoom: { src: '/img/tent-room.jpg', sm: '/img/tent-room.jpg', w: 1024, h: 768, alt: 'Luxury Tent Room with private balcony and lawn at Nature Senses' },
 
   // Night and drone stills from the earlier set
   nightPool: v1('night-pool', 2000, 1500, 'The pool lit blue at night beside the glowing room block'),

@@ -21,18 +21,18 @@ const PACKAGES = [
 ];
 
 const DAY = [
-  ['10:00 AM', 'Arrive to a welcome drink. The pool, games room, play area and lawns are yours.'],
-  ['1:30 PM', 'Lunch at Farm Kitchen: a full, freshly cooked spread.'],
-  ['Afternoon', 'Back to the pool, a game of billiards, or a rest in the shade.'],
-  ['5:00 PM', 'Hi-tea with hot bhajji and filter coffee.'],
-  ['6:30 PM', 'The pool, gym and games room close.'],
-  ['7:00 PM', 'Head home, ahead of the evening traffic.'],
+  ['9:30 AM', 'Arrive to a refreshing welcome drink and explore the clubhouse, gardens and open lawns.'],
+  ['11:30 AM', 'Clubhouse recreation: billiards, table tennis, carrom, and fitness gym.'],
+  ['1:00 PM', 'Farm Kitchen Buffet Lunch: a full, freshly cooked regional spread.'],
+  ['3:30 PM', 'Afternoon swim in the curved lagoon pool beneath palm shade.'],
+  ['5:30 PM', 'Hi-tea with hot bhajji, cutlets, and South Indian filter coffee.'],
+  ['6:30 PM', 'Children’s play park, twilight stroll on illuminated paths, and evening leisure.'],
 ];
 
 const STEPS = [
   ['Message or call', `Send your date, number of guests and package on WhatsApp, or call ${CONTACT.phone}.`],
   ['Get confirmation', "We'll confirm availability and share payment details."],
-  ['Arrive at 10 AM', 'Bring swimwear. Outside food and drinks are not allowed.'],
+  ['Arrive at 9:30 AM', 'Bring swimwear. Outside food and drinks are not allowed.'],
 ];
 
 export default function DayOut() {
@@ -45,7 +45,7 @@ export default function DayOut() {
         photo={PHOTOS.poolSunset}
         position="50% 65%"
         facts={[
-          ['Hours', '10 AM to 7 PM'],
+          ['Hours', '9:30 AM to 6:30 PM'],
           ['Per person', 'From ₹2,000 + GST'],
           ['Included', 'Welcome drink, lunch, hi-tea and every facility'],
         ]}
@@ -62,7 +62,7 @@ export default function DayOut() {
           <SectionHead id="pkg-title" title="Two packages" intro="Per person, plus GST. Both include the welcome drink, lunch, hi-tea and every facility." />
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:mt-14 lg:gap-6">
             {PACKAGES.map((p) => (
-              <article key={p.name} className="rounded-sign bg-wall-2 p-6 sm:p-9">
+              <article key={p.name} className="rounded-sign bg-card border border-ink/8 shadow-sm p-6 sm:p-9">
                 <div className="rule flex items-baseline justify-between gap-4 border-b pb-6">
                   <h3 className="t-h3">{p.name}</h3>
                   <p className="text-right">

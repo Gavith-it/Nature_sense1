@@ -38,7 +38,7 @@ export function useTwin(photo, nightKey) {
 }
 
 // A photograph in a rounded frame. At night it crossfades to its lit twin when one exists.
-export function Photo({ photo, night: nightKey, className = '', sizes = '100vw', eager = false, position, nightPosition, unveil = true, children, rounded = true }) {
+export function Photo({ photo, night: nightKey = null, className = '', sizes = '100vw', eager = false, position = undefined, nightPosition = undefined, unveil = true, children = null, rounded = true }) {
   const { twin, night } = useTwin(photo, nightKey);
   return (
     <div className={`${rounded ? 'photo' : 'relative overflow-hidden bg-wall-2'} ${unveil ? 'unveil' : ''} ${className}`}>
@@ -62,7 +62,7 @@ export function Disc({ n, lg = false, className = '' }) {
 }
 
 // A section heading. When the section is about one place on the estate, it carries that zone's disc.
-export function SectionHead({ id, title, intro, zone, className = '', aside, inline = false }) {
+export function SectionHead({ id, title, intro = undefined, zone = undefined, className = '', aside = undefined, inline = false }) {
   return (
     <div className={`grid gap-6 ${inline ? '' : 'lg:grid-cols-12 lg:items-end'} ${className}`}>
       <div className={inline ? '' : 'lg:col-span-7'}>
@@ -100,7 +100,7 @@ export function BookButton({ children = 'Book a stay', className = '' }) {
 }
 
 // The opening of an inside page: a wide photograph with the page's sign plate set over its foot.
-export function PageHero({ title, intro, photo, night, position, nightPosition, facts, actions, zone }) {
+export function PageHero({ title, intro = undefined, photo, night = undefined, position = undefined, nightPosition = undefined, facts = undefined, actions = undefined, zone = undefined }) {
   return (
     <section className="relative">
       <Photo
@@ -136,7 +136,7 @@ export function Closing({
   title = 'Come and stay a while',
   text = 'Book a room online in a few minutes, or message us first with any questions.',
   photo = PHOTOS.poolSunset,
-  night,
+  night = undefined,
   book = true,
   whatsapp = WA_HELLO,
   whatsappLabel = 'Message on WhatsApp',
@@ -163,3 +163,86 @@ export function Closing({
     </section>
   );
 }
+
+// Soneva-inspired grey-to-black scroll reveal text component for narrative introductions.
+export function ScrollRevealText({ content, className = '', theme = 'light' }) {
+  const textRef = React.useRef(null);
+  const words = content.split(' ');
+  const isDark = theme === 'dark';
+
+  React.useEffect(() => {
+    let ticking = false;
+
+    const updateWords = () => {
+      if (textRef.current) {
+        const spans = textRef.current.querySelectorAll('.reveal-word');
+        const vh = window.innerHeight;
+        const startY = vh * 0.85;
+        const endY = vh * 0.40;
+        const isNight = isDark || document.documentElement.dataset.time === 'night';
+        const activeColor = isNight ? '#F5F1E8' : '#252B27';
+        const idleColor = isNight ? '#828E86' : '#9EA7A1';
+
+        spans.forEach((span) => {
+          const rect = span.getBoundingClientRect();
+          const progress = Math.min(Math.max((startY - rect.top) / (startY - endY), 0), 1);
+
+          if (progress >= 0.85) {
+            span.style.color = activeColor;
+            span.style.opacity = '1';
+            span.style.fontWeight = '500';
+          } else if (progress <= 0.1) {
+            span.style.color = idleColor;
+            span.style.opacity = '0.35';
+            span.style.fontWeight = '400';
+          } else {
+            span.style.color = activeColor;
+            span.style.opacity = (0.35 + progress * 0.65).toFixed(2);
+            span.style.fontWeight = progress > 0.5 ? '500' : '400';
+          }
+        });
+      }
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateWords();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    updateWords();
+
+    const observer = new MutationObserver(() => updateWords());
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-time'] });
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      observer.disconnect();
+    };
+  }, []);
+
+  return (
+    <p
+      ref={textRef}
+      className={className || "text-base sm:text-lg md:text-xl lg:text-[1.25rem] leading-relaxed md:leading-[1.7] tracking-normal"}
+    >
+      {words.map((word, i) => (
+        <span
+          key={i}
+          className="reveal-word inline-block mr-[0.26em] transition-all duration-150 ease-out"
+          style={{ color: isDark ? '#A3B5AA' : '#9EA7A1', opacity: 0.45, fontWeight: 400 }}
+        >
+          {word}
+        </span>
+      ))}
+    </p>
+  );
+}
+

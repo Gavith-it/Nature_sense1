@@ -6,11 +6,14 @@ import './index.css';
 const pages = {
   home: () => import('./pages/Home.jsx'),
   stay: () => import('./pages/Stay.jsx'),
-  'day-out': () => import('./pages/DayOut.jsx'),
-  events: () => import('./pages/Events.jsx'),
+  packages: () => import('./pages/Packages.jsx'),
+  'day-out': () => import('./pages/Packages.jsx'),
+  events: () => import('./pages/Packages.jsx'),
   facilities: () => import('./pages/Facilities.jsx'),
   gallery: () => import('./pages/Gallery.jsx'),
+  farmland: () => import('./pages/Farmland.jsx'),
   visit: () => import('./pages/Visit.jsx'),
+  'options-preview': () => import('./pages/OptionsPreview.jsx'),
 };
 
 const key = document.body.dataset.page || 'home';

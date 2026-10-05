@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import Layout from '../components/Layout';
-import { Closing } from '../components/ui';
+import { Closing, Photo, ScrollRevealText } from '../components/ui';
 import { PHOTOS } from '../site';
 
 const ALL = [
@@ -77,7 +77,7 @@ function Lightbox({ items, index, onClose, onMove }) {
   const round = 'flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20';
 
   return (
-    <div role="dialog" aria-modal="true" aria-label="Photo viewer" onKeyDown={trap} className="fixed inset-0 z-50 flex flex-col bg-[#0B120F]/95 text-white backdrop-blur-sm">
+    <div role="dialog" aria-modal="true" aria-label="Photo viewer" onKeyDown={trap} className="fixed inset-0 z-50 flex flex-col bg-[#172A22]/95 text-white backdrop-blur-sm">
       <div className="flex items-center justify-between p-3 sm:p-5">
         <p className="num font-semibold" aria-live="polite">{index + 1} <span className="text-white/60">of {items.length}</span></p>
         <button ref={closeRef} type="button" onClick={onClose} className={round} aria-label="Close photo viewer"><X aria-hidden="true" /></button>
@@ -102,24 +102,92 @@ export default function Gallery() {
 
   return (
     <Layout page="gallery">
-      <section className="wrap grid gap-8 pb-10 pt-10 lg:grid-cols-12 lg:gap-12 lg:pb-14 lg:pt-16">
-        <div className="lg:col-span-7">
-          <h1 className="t-h1">From first light to lights-out</h1>
-          <p className="t-lede muted mt-5 max-w-[36rem]">The rooms, pool, lawns and the farmland around them, from the ground and from the air. Tap any photo to see it large.</p>
+      {/* 
+        PRESERVED CODE - Previous Plain Header:
+        <section className="wrap grid gap-8 pb-10 pt-10 lg:grid-cols-12 lg:gap-12 lg:pb-14 lg:pt-16">
+          <div className="lg:col-span-7">
+            <h1 className="t-h1">From first light to lights-out</h1>
+            <p className="t-lede muted mt-5 max-w-[36rem]">The rooms, pool, lawns and the farmland around them, from the ground and from the air. Tap any photo to see it large.</p>
+          </div>
+          <div className="lg:col-span-5 lg:self-end lg:justify-self-end">
+            <div className="inline-flex flex-wrap gap-1 rounded-[28px] bg-ink/[0.07] p-1" role="group" aria-label="Filter photos">
+              ...
+            </div>
+          </div>
+        </section>
+      */}
+
+      {/* 1. Hero Section: Clean, Cinematic Aerial Sunset Photography with Breadcrumb & Headline */}
+      <section className="relative overflow-hidden bg-wall-2">
+        <div className="relative h-[52svh] min-h-[22rem] max-h-[40rem] lg:h-[min(68svh,44rem)] lg:max-h-none">
+          <Photo
+            photo={PHOTOS.aerialSunset}
+            night="aerialNight"
+            eager
+            unveil={false}
+            rounded={false}
+            position="50% 50%"
+            sizes="100vw"
+            className="absolute inset-0 h-full w-full"
+          />
+          {/* Subtle gradient overlay to ensure crystal-clear text legibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/50" />
+
+          {/* Centered Hero Content */}
+          <div className="absolute inset-0 flex flex-col justify-end pb-12 sm:pb-16 lg:pb-18">
+            <div className="wrap w-full text-center">
+              <nav className="inline-flex items-center gap-2 rounded-full bg-black/40 backdrop-blur-md border border-white/15 px-4 py-1.5 text-[0.8rem] uppercase tracking-[0.2em] text-white/80 mb-4" aria-label="Breadcrumb">
+                <a href="/" className="hover:text-white transition-colors">Home</a>
+                <span className="text-white/40">›</span>
+                <span className="text-[#E5CA8F] font-medium">Gallery</span>
+              </nav>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-[-0.028em] drop-shadow-sm max-w-4xl mx-auto leading-[1.12]">
+                Photo Gallery
+              </h1>
+              <p className="mt-4 text-sm sm:text-base lg:text-lg text-white/85 max-w-2xl mx-auto leading-relaxed font-light">
+                A visual journey through Nature Senses — from first light to lights-out.
+              </p>
+            </div>
+          </div>
         </div>
-        <div className="lg:col-span-5 lg:self-end lg:justify-self-end">
-          <div className="inline-flex flex-wrap gap-1 rounded-[28px] bg-ink/[0.07] p-1" role="group" aria-label="Filter photos">
-            {FILTERS.map(([key, label]) => (
-              <button
-                key={key}
-                type="button"
-                aria-pressed={filter === key}
-                onClick={() => setFilter(key)}
-                className={`min-h-11 rounded-full px-4 font-semibold transition-colors ${filter === key ? 'bg-ink text-wall' : 'text-ink-2 hover:text-ink'}`}
-              >
-                {label}
-              </button>
-            ))}
+      </section>
+
+      {/* 2. Centered Editorial Content Brief & Category Filter Bar */}
+      <section className="wrap py-8 sm:py-11 lg:py-14 text-center" aria-labelledby="gallery-intro-title">
+        <div className="max-w-2xl mx-auto">
+          <span className="text-[0.7rem] uppercase tracking-[0.25em] font-medium text-[#A7834F]">
+            Visual Perspectives
+          </span>
+          <h2
+            id="gallery-intro-title"
+            className="text-2xl sm:text-3xl md:text-4xl font-serif text-ink mt-2 tracking-[-0.02em] leading-tight"
+          >
+            From first light, <span className="italic text-[#A7834F] font-serif">to lights-out.</span>
+          </h2>
+          <ScrollRevealText
+            content="The rooms, pool, lawns and the farmland around them, from the ground and from the air. Tap any photo to see it large."
+            className="mt-3 text-sm sm:text-base md:text-lg leading-relaxed max-w-xl mx-auto font-light"
+          />
+
+          {/* Centered Category Filter Pills (High-Contrast Theme Tokens) */}
+          <div className="mt-6 sm:mt-8 flex justify-center">
+            <div className="inline-flex flex-wrap items-center justify-center gap-1 rounded-full bg-ink/[0.07] p-1.5" role="group" aria-label="Filter photos">
+              {FILTERS.map(([key, label]) => (
+                <button
+                  key={key}
+                  type="button"
+                  aria-pressed={filter === key}
+                  onClick={() => setFilter(key)}
+                  className={`min-h-10 rounded-full px-4 sm:px-5 text-xs sm:text-sm font-semibold transition-colors duration-200 ${
+                    filter === key
+                      ? 'bg-ink text-wall shadow-sm'
+                      : 'text-ink-2 hover:text-ink hover:bg-ink/[0.05]'
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>

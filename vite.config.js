@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'node:path';
 
-const pages = ['stay', 'day-out', 'events', 'facilities', 'gallery', 'visit'];
+const pages = ['stay', 'packages', 'day-out', 'events', 'facilities', 'gallery', 'visit', 'farmland', 'options-preview'];
 
 export default defineConfig({
   plugins: [react()],

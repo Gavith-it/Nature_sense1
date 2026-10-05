@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Menu, X, MessageCircle, Phone } from 'lucide-react';
+import { Menu, X, MessageCircle, Phone, Instagram, Facebook } from 'lucide-react';
 import { NAV, BOOKING_URL, CONTACT, TIMES, WA_HELLO } from '../site';
 import { TimeProvider, TimeSwitch } from './time';
 
@@ -125,47 +125,123 @@ function Header({ page, floating }) {
           </div>
         )}
       </header>
-      {open && <div className="fixed inset-0 z-30 bg-[#08140f]/40 backdrop-blur-[2px] lg:hidden" onClick={() => setOpen(false)} aria-hidden="true" />}
+      {open && <div className="fixed inset-0 z-30 bg-[#172A22]/50 backdrop-blur-[2px] lg:hidden" onClick={() => setOpen(false)} aria-hidden="true" />}
     </>
   );
 }
 
 function Footer() {
   return (
-    <footer className="wrap pb-6">
-      <div className="sign px-6 pb-8 pt-12 sm:px-10 lg:px-14 lg:pt-16">
-        <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-4">
-            <Wordmark onPlate />
-            <p className="muted mt-5 max-w-xs">Where nature meets comfort. A farm stay near Denkanikottai, about an hour from Bangalore.</p>
+    <footer className="w-full bg-[#172A22] text-[#F5F1E8] pt-14 sm:pt-20 lg:pt-24 pb-12 sm:pb-16 mt-0">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-20">
+        {/* Large Editorial Serif Branding Header */}
+        <div className="mb-12 sm:mb-16 lg:mb-20">
+          <a href="/" className="inline-block group focus:outline-none" aria-label="Nature Senses Farm Stay">
+            <span className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-normal tracking-[0.08em] text-[#A7834F] block leading-none transition-colors group-hover:text-[#C5A059]">
+              NATURE SENSES
+            </span>
+            <span className="mt-2.5 sm:mt-3.5 block text-[0.72rem] sm:text-xs md:text-sm uppercase tracking-[0.38em] sm:tracking-[0.45em] font-medium text-[#A7834F]/85">
+              FARM STAY &amp; RESORTS
+            </span>
+          </a>
+        </div>
+
+        {/* Content Columns: Info on Left, Navigation Lists on Right */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-14 text-sm sm:text-[0.95rem]">
+          {/* Column 1: Address, Email, Phone, Socials */}
+          <div className="md:col-span-5 lg:col-span-5 space-y-4 text-[#F5F1E8]/90 font-light leading-relaxed">
+            <p className="text-[#F5F1E8]/85">
+              Hosur - Denkanikottai Rd,<br />
+              Kuppati, Near Denkanikottai, Tamil Nadu 635107
+            </p>
+            <p className="pt-1.5">
+              <a
+                href={`mailto:${CONTACT.email}`}
+                className="text-[#A7834F] hover:text-[#C5A059] transition-colors break-all underline-offset-4 hover:underline"
+              >
+                {CONTACT.email}
+              </a>
+            </p>
+            <p className="pt-0.5 text-[#F5F1E8]/90">
+              <a href={CONTACT.phoneHref} className="hover:text-[#A7834F] transition-colors">
+                {CONTACT.phone}
+              </a>
+            </p>
+
+            <div className="flex items-center gap-3 pt-3">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-9 w-9 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:text-[#A7834F] hover:border-[#A7834F] transition-all"
+                aria-label="Instagram"
+              >
+                <Instagram size={17} strokeWidth={1.75} />
+              </a>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-9 w-9 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:text-[#A7834F] hover:border-[#A7834F] transition-all"
+                aria-label="Facebook"
+              >
+                <Facebook size={17} strokeWidth={1.75} />
+              </a>
+            </div>
           </div>
-          <div className="grid gap-10 sm:grid-cols-3 lg:col-span-8">
-            <div>
-              <h2 className="t-small muted font-medium">Rooms and day outs</h2>
-              <ul className="mt-2 space-y-0.5">
-                <li><a className="inline-block py-1 hover:underline" href={CONTACT.phoneHref}>{CONTACT.phone}</a></li>
-                <li><a className="inline-block py-1 hover:underline" href={WA_HELLO}>WhatsApp</a></li>
-                <li><a className="inline-block break-all py-1 hover:underline" href={`mailto:${CONTACT.email}`}>{CONTACT.email.split('@')[0]}@<wbr />{CONTACT.email.split('@')[1]}</a></li>
-              </ul>
-              <h2 className="t-small muted mt-7 font-medium">Events and parties</h2>
-              <p className="mt-3"><a className="inline-block py-1 hover:underline" href={CONTACT.eventsPhoneHref}>{CONTACT.eventsPhone}</a></p>
-            </div>
-            <div>
-              <h2 className="t-small muted font-medium">Find us</h2>
-              <p className="mt-3">{CONTACT.area}</p>
-              <p className="mt-3">Check in from {TIMES.checkIn}, check out by {TIMES.checkOut}</p>
-              <p className="mt-4"><a className="link" href="/visit/">Directions</a></p>
-            </div>
-            <nav aria-label="Footer">
-              <h2 className="t-small muted font-medium">Pages</h2>
-              <ul className="mt-2 space-y-0.5">
-                <li><a className="inline-block py-1 hover:underline" href="/">Home</a></li>
-                {NAV.map((n) => <li key={n.key}><a className="inline-block py-1 hover:underline" href={n.href}>{n.label}</a></li>)}
-              </ul>
-            </nav>
+
+          {/* Column 2: Navigation Links Col 1 */}
+          <div className="md:col-span-3 lg:col-span-3 md:col-start-7 lg:col-start-7">
+            <ul className="space-y-3 font-normal text-[#F5F1E8]/85">
+              <li>
+                <a href="/" className="hover:text-[#A7834F] transition-colors">Home</a>
+              </li>
+              <li>
+                <a href="/stay/" className="hover:text-[#A7834F] transition-colors">Villas &amp; Rooms</a>
+              </li>
+              <li>
+                <a href="/packages/" className="hover:text-[#A7834F] transition-colors">Suites &amp; Cottages</a>
+              </li>
+              <li>
+                <a href="/farmland/" className="hover:text-[#A7834F] transition-colors">Managed Farmlands</a>
+              </li>
+              <li>
+                <a href="/facilities/" className="hover:text-[#A7834F] transition-colors">Experiences</a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3: Navigation Links Col 2 */}
+          <div className="md:col-span-3 lg:col-span-3">
+            <ul className="space-y-3 font-normal text-[#F5F1E8]/85">
+              <li>
+                <a href="/#around-estate" className="hover:text-[#A7834F] transition-colors">Virtual Tour</a>
+              </li>
+              <li>
+                <a href="/gallery/" className="hover:text-[#A7834F] transition-colors">Gallery</a>
+              </li>
+              <li>
+                <a href="/events/" className="hover:text-[#A7834F] transition-colors">Contact Us</a>
+              </li>
+              <li>
+                <a href={BOOKING_URL} className="hover:text-[#A7834F] transition-colors">Reservation</a>
+              </li>
+            </ul>
           </div>
         </div>
-        <p className="t-small muted rule mt-14 border-t pt-6">© {new Date().getFullYear()} Nature Senses Farm Stay. All rates are subject to GST.</p>
+
+        {/* Subtle Horizontal Divider */}
+        <div className="border-t border-white/10 my-10 sm:my-14" />
+
+        {/* Bottom Bar */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-white/60">
+          <p>© {new Date().getFullYear()}. All rights reserved</p>
+          <div className="flex items-center gap-2 sm:gap-3 text-white/60">
+            <a href="/stay/" className="hover:text-white transition-colors">Resort Policy &amp; Cancellation Policy</a>
+            <span>•</span>
+            <a href="/visit/" className="hover:text-white transition-colors">Privacy Policy</a>
+          </div>
+        </div>
       </div>
     </footer>
   );

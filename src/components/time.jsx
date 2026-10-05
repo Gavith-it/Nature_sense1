@@ -19,7 +19,7 @@ export function TimeProvider({ children }) {
     const root = document.documentElement;
     root.classList.add('time-fade');
     root.dataset.time = next;
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next === 'night' ? '#0B120F' : '#F3F4EF');
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next === 'night' ? '#172A22' : '#F5F1E8');
     try { localStorage.setItem('ns-time', next); } catch { /* storage blocked: the switch still works for this page */ }
     window.setTimeout(() => root.classList.remove('time-fade'), 700);
     setTimeState(next);
@@ -54,7 +54,7 @@ export function TimeSwitch({ className = '', onPhoto = false, onPlate = false, c
         data-v={value}
         className={`inline-flex h-10 items-center gap-1.5 rounded-full px-3.5 text-[0.9rem] font-semibold transition-colors duration-300 ${
           on
-            ? onPhoto ? 'bg-white text-[#101915]' : onPlate ? 'bg-plate-ink text-plate' : 'bg-ink text-wall'
+            ? onPhoto ? 'bg-[#F5F1E8] text-[#172A22]' : onPlate ? 'bg-plate-ink text-plate' : 'bg-ink text-wall'
             : onPhoto ? 'text-white/85 hover:text-white' : onPlate ? 'text-plate-muted hover:text-plate-ink' : 'text-ink-2 hover:text-ink'
         }`}
       >

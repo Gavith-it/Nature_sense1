@@ -2,7 +2,7 @@ import React from 'react';
 import { MapPin, Phone, Mail, MessageCircle, ChevronDown } from 'lucide-react';
 import Layout from '../components/Layout';
 import RouteLines from '../components/RouteLines';
-import { Closing, PageHero, SectionHead } from '../components/ui';
+import { Closing, PageHero, Photo, ScrollRevealText, SectionHead } from '../components/ui';
 import { CONTACT, PHOTOS, TIMES, WA_HELLO, waLink } from '../site';
 
 const FAQ = [
@@ -25,22 +25,117 @@ const CONTACTS = [
 export default function Visit() {
   return (
     <Layout page="visit">
-      <PageHero
-        title="Getting here"
-        intro="We're near Denkanikottai and Kuppati in Tamil Nadu, about an hour's drive from south Bangalore. Most of the way is highway; the last stretch runs through farmland."
-        photo={PHOTOS.aerialFields}
-        facts={[
-          ['Where', CONTACT.area],
-          ['Nearest town', 'Hosur, then country roads'],
-          ['Check-in', `From ${TIMES.checkIn}, out by ${TIMES.checkOut}`],
-        ]}
-        actions={
-          <>
-            <a href={CONTACT.maps} className="btn-act" target="_blank" rel="noopener noreferrer"><MapPin size={18} strokeWidth={1.8} aria-hidden="true" /> Open in Google Maps</a>
-            <a href={waLink(CONTACT.whatsapp, 'Hi, could you share the exact location of Nature Senses Farm Stay?')} className="btn-line">Ask for the location pin</a>
-          </>
-        }
-      />
+      {/* 
+        PRESERVED CODE - Previous PageHero style:
+        <PageHero
+          title="Getting here"
+          intro="We're near Denkanikottai and Kuppati in Tamil Nadu, about an hour's drive from south Bangalore. Most of the way is highway; the last stretch runs through farmland."
+          photo={PHOTOS.aerialFields}
+          facts={[
+            ['Where', CONTACT.area],
+            ['Nearest town', 'Hosur, then country roads'],
+            ['Check-in', `From ${TIMES.checkIn}, out by ${TIMES.checkOut}`],
+          ]}
+          actions={
+            <>
+              <a href={CONTACT.maps} className="btn-act" target="_blank" rel="noopener noreferrer"><MapPin size={18} strokeWidth={1.8} aria-hidden="true" /> Open in Google Maps</a>
+              <a href={waLink(CONTACT.whatsapp, 'Hi, could you share the exact location of Nature Senses Farm Stay?')} className="btn-line">Ask for the location pin</a>
+            </>
+          }
+        />
+      */}
+
+      {/* 1. Hero Section: Clean, Cinematic Photography with Breadcrumb & Headline */}
+      <section className="relative overflow-hidden bg-wall-2">
+        <div className="relative h-[56svh] min-h-[22rem] max-h-[42rem] lg:h-[min(70svh,46rem)] lg:max-h-none">
+          <Photo
+            photo={PHOTOS.aerialFields}
+            night="nightEstateTop"
+            eager
+            unveil={false}
+            rounded={false}
+            position="50% 50%"
+            sizes="100vw"
+            className="absolute inset-0 h-full w-full"
+          />
+          {/* Subtle gradient overlay to ensure crystal-clear text legibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/50" />
+
+          {/* Centered Hero Content */}
+          <div className="absolute inset-0 flex flex-col justify-end pb-12 sm:pb-16 lg:pb-20">
+            <div className="wrap w-full text-center">
+              <nav className="inline-flex items-center gap-2 rounded-full bg-black/40 backdrop-blur-md border border-white/15 px-4 py-1.5 text-[0.8rem] uppercase tracking-[0.2em] text-white/80 mb-4" aria-label="Breadcrumb">
+                <a href="/" className="hover:text-white transition-colors">Home</a>
+                <span className="text-white/40">›</span>
+                <span className="text-[#E5CA8F] font-medium">Visit</span>
+              </nav>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-[-0.028em] drop-shadow-sm max-w-4xl mx-auto leading-[1.12]">
+                Getting Here
+              </h1>
+              <p className="mt-4 text-sm sm:text-base lg:text-lg text-white/85 max-w-2xl mx-auto leading-relaxed font-light">
+                About an hour’s drive from South Bangalore, surrounded by peaceful Tamil Nadu countryside.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Centered Editorial Intro Section (Scroll Reveal Effect + Essential Visit Details & Maps Actions) */}
+      <section className="py-12 sm:py-16 lg:py-20" aria-labelledby="getting-here-title">
+        <div className="wrap max-w-4xl mx-auto text-center">
+          <span className="text-[0.7rem] uppercase tracking-[0.25em] font-medium text-[#A7834F]">
+            LOCATION &amp; ARRIVAL
+          </span>
+          <h2
+            id="getting-here-title"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] font-serif text-ink mt-2 tracking-[-0.02em] leading-tight"
+          >
+            Scenic Country Roads, <span className="italic text-[#A7834F] font-serif">an hour from Bangalore.</span>
+          </h2>
+          <ScrollRevealText
+            content="We're near Denkanikottai and Kuppati in Tamil Nadu, about an hour's drive from south Bangalore. Most of the way is highway; the last stretch runs through farmland."
+            className="mt-4 text-base sm:text-lg md:text-xl text-ink/75 leading-relaxed max-w-2xl mx-auto font-light"
+          />
+
+          {/* Quick Facts Strip: Where, Nearest town, Check-in */}
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-center max-w-3xl mx-auto">
+            <div className="rounded-2xl border border-ink/8 bg-card p-5 shadow-xs">
+              <span className="text-[0.7rem] uppercase tracking-wider text-ink-2 font-medium">Where</span>
+              <p className="mt-1.5 font-semibold text-ink text-sm sm:text-base">{CONTACT.area}</p>
+            </div>
+            <div className="rounded-2xl border border-ink/8 bg-card p-5 shadow-xs">
+              <span className="text-[0.7rem] uppercase tracking-wider text-ink-2 font-medium">Nearest Town</span>
+              <p className="mt-1.5 font-semibold text-ink text-sm sm:text-base">Hosur, then country roads</p>
+            </div>
+            <div className="rounded-2xl border border-ink/8 bg-card p-5 shadow-xs">
+              <span className="text-[0.7rem] uppercase tracking-wider text-ink-2 font-medium">Check-In / Out</span>
+              <p className="mt-1.5 font-semibold text-ink text-sm sm:text-base">From {TIMES.checkIn}, out by {TIMES.checkOut}</p>
+            </div>
+          </div>
+
+          {/* Direct Map & Location Actions */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+            <a
+              href={CONTACT.maps}
+              className="btn-act inline-flex items-center gap-2"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MapPin size={18} strokeWidth={1.8} aria-hidden="true" />
+              <span>Open in Google Maps</span>
+            </a>
+            <a
+              href={waLink(CONTACT.whatsapp, 'Hi, could you share the exact location of Nature Senses Farm Stay?')}
+              className="btn-line inline-flex items-center gap-2"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MessageCircle size={18} strokeWidth={1.8} aria-hidden="true" />
+              <span>Ask for the location pin</span>
+            </a>
+          </div>
+        </div>
+      </section>
 
       <section className="py-16 lg:py-28" aria-labelledby="drive-title">
         <div className="wrap">

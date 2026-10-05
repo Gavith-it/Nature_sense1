@@ -32,10 +32,10 @@ export function waLink(base, text) {
 
 export const NAV = [
   { href: '/stay/', label: 'Stay', key: 'stay' },
-  { href: '/day-out/', label: 'Day out', key: 'day-out' },
-  { href: '/events/', label: 'Events', key: 'events' },
+  { href: '/packages/', label: 'Packages', key: 'packages' },
   { href: '/facilities/', label: 'Facilities', key: 'facilities' },
   { href: '/gallery/', label: 'Gallery', key: 'gallery' },
+  { href: '/farmland/', label: 'Farmland', key: 'farmland' },
   { href: '/visit/', label: 'Visit', key: 'visit' },
 ];
 
