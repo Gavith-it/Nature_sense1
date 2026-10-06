@@ -16,6 +16,7 @@ import {
   Presentation,
   Wifi,
   Car,
+  Flame,
 } from 'lucide-react';
 
 // Custom refined SVG line icons for sports & games to match the architectural luxury aesthetic
@@ -70,6 +71,7 @@ const FACILITIES_EXPERIENCES = [
   { name: 'Indoor Event Space', icon: Building2 },
   { name: 'Outdoor Event Space', icon: TentTree },
   { name: 'Conference Room', icon: Presentation },
+  { name: 'Evening Bonfire', icon: Flame },
   { name: 'Complimentary Wi-Fi', icon: Wifi },
   { name: 'Parking', icon: Car },
 ];
@@ -152,9 +154,9 @@ const FACILITY_ZONES = [
 
 const FACILITY_PHOTOS = {
   pool: PHOTOS.poolSunset,
-  lawn: PHOTOS.pergolaLawn,
-  games: PHOTOS.clubhouse,
-  'event-space': PHOTOS.lobby,
+  lawn: PHOTOS.outdoorEventLawn || PHOTOS.pergolaLawn,
+  games: PHOTOS.gym || PHOTOS.tableTennis,
+  'event-space': PHOTOS.banquetFunction || PHOTOS.lobby,
   play: PHOTOS.playSunset,
   kitchen: PHOTOS.kitchen,
 };
@@ -297,6 +299,37 @@ export default function Facilities() {
             })}
           </div>
           <p className="muted mt-16">Planning a celebration or gathering? Indoor and outdoor spaces accommodate 10 to 400 guests. <a href="/packages/" className="link">Explore Event Packages</a></p>
+        </div>
+      </section>
+
+      {/* 4. Evening Bonfire & Amphitheatre Arena Showcase */}
+      <section className="py-14 sm:py-20 lg:py-24 bg-[#172A22] text-[#F5F1E8]" aria-labelledby="bonfire-section-title">
+        <div className="wrap">
+          <div className="grid gap-10 lg:grid-cols-12 lg:gap-14 items-center">
+            <div className="lg:col-span-7">
+              <Photo
+                photo={PHOTOS.bonfire}
+                sizes="(min-width: 1024px) 58vw, 100vw"
+                className="aspect-[4/3] rounded-2xl sm:rounded-3xl shadow-xl border border-white/10"
+              />
+            </div>
+            <div className="lg:col-span-5">
+              <span className="text-[0.7rem] uppercase tracking-[0.25em] font-medium text-[#E5CA8F]">
+                Twilight &amp; Night Leisure
+              </span>
+              <h2 id="bonfire-section-title" className="text-2xl sm:text-3xl lg:text-4xl font-serif text-white mt-2.5 leading-tight">
+                Sunken Bonfire &amp; <span className="italic text-[#E5CA8F]">Amphitheatre.</span>
+              </h2>
+              <p className="mt-4 text-white/80 text-sm sm:text-base leading-relaxed font-light">
+                As twilight settles over the countryside, gather around the warm crackle of our sunken stone fire pit. Framed by illuminated step seating and open starry skies, it offers a magical setting for musical evenings, storytelling, and relaxed conversations with family and friends.
+              </p>
+              <div className="mt-6 pt-5 border-t border-white/10 flex flex-wrap gap-2 text-xs">
+                <span className="rounded-full bg-white/10 px-3.5 py-1.5 font-medium text-white/90">Curved Stone Step Seating</span>
+                <span className="rounded-full bg-white/10 px-3.5 py-1.5 font-medium text-white/90">Warm LED Step Lighting</span>
+                <span className="rounded-full bg-white/10 px-3.5 py-1.5 font-medium text-white/90">Starry Countryside Nights</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -7,8 +7,9 @@ export const ZONE_PHOTOS = {
   rooms: PHOTOS.roomBlock,
   pool: PHOTOS.poolSunset,
   play: PHOTOS.playSunset,
-  lawn: PHOTOS.pergolaLawn,
+  lawn: PHOTOS.outdoorEventLawn || PHOTOS.pergolaLawn,
   kitchen: PHOTOS.kitchen,
+  games: PHOTOS.tableTennis,
 };
 
 // The directory board by the gate: every zone, its number and its hours.

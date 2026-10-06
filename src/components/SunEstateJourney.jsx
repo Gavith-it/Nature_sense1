@@ -32,7 +32,7 @@ export const ESTATE_STEPS = [
     hours: '11:30 AM – 01:00 PM',
     badge: 'All Equipment Included',
     tag: 'Zone 07 · Games & Gym',
-    photo: PHOTOS.clubhouse || PHOTOS.lobby,
+    photo: PHOTOS.tableTennis || PHOTOS.clubhouse,
     zoneKey: 'games',
   },
   {
@@ -80,7 +80,7 @@ export const ESTATE_STEPS = [
     hours: '05:30 PM – 06:30 PM',
     badge: 'Hi-Tea Included in Package',
     tag: 'Zone 06 · Farm Kitchen & Terrace',
-    photo: PHOTOS.teaTray,
+    photo: PHOTOS.outdoorRestaurant || PHOTOS.teaTray,
     zoneKey: 'kitchen',
   },
   {

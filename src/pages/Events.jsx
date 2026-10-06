@@ -7,7 +7,7 @@ import { CONTACT, PHOTOS, waLink } from '../site';
 const SPACES = [
   {
     name: 'Lawn and banquet space',
-    photo: PHOTOS.pergolaLawn,
+    photo: PHOTOS.banquetFunction || PHOTOS.pergolaLawn,
     zone: 5,
     for: 'Birthdays, anniversaries, family functions and team parties.',
     facts: [
@@ -19,7 +19,7 @@ const SPACES = [
   },
   {
     name: 'Conference room',
-    photo: PHOTOS.clubhouse,
+    photo: PHOTOS.conferenceRoom || PHOTOS.clubhouse,
     zone: 1,
     for: 'Offsites, planning days, workshops and training.',
     facts: [

@@ -6,16 +6,24 @@ import { PHOTOS } from '../site';
 
 const ALL = [
   { p: PHOTOS.aerialSunset, g: 'estate' },
+  { p: PHOTOS.bonfire, g: 'estate' },
   { p: PHOTOS.bed, g: 'rooms' },
   { p: PHOTOS.aerialNight, g: 'night' },
   { p: PHOTOS.poolSunset, g: 'estate' },
+  { p: PHOTOS.bonfire, g: 'night' },
   { p: PHOTOS.balconyPoolView, g: 'rooms' },
   { p: PHOTOS.playSunset, g: 'estate' },
   { p: PHOTOS.nightPool, g: 'night' },
+  { p: PHOTOS.banquetFunction, g: 'estate' },
   { p: PHOTOS.balcony, g: 'rooms' },
+  { p: PHOTOS.gym, g: 'estate' },
   { p: PHOTOS.lobby, g: 'estate' },
+  { p: PHOTOS.tableTennis, g: 'estate' },
   { p: PHOTOS.kitchen, g: 'estate' },
+  { p: PHOTOS.conferenceRoom, g: 'estate' },
+  { p: PHOTOS.outdoorEventLawn, g: 'estate' },
   { p: PHOTOS.playNight, g: 'night' },
+  { p: PHOTOS.outdoorRestaurant, g: 'estate' },
   { p: PHOTOS.tvUnit, g: 'rooms' },
   { p: PHOTOS.aerialDay, g: 'estate' },
   { p: PHOTOS.bath, g: 'rooms' },
@@ -34,6 +42,7 @@ const ALL = [
   { p: PHOTOS.washrooms, g: 'estate' },
   { p: PHOTOS.fridge, g: 'rooms' },
   { p: PHOTOS.nightGate, g: 'night' },
+  { p: PHOTOS.readingArea, g: 'estate' },
   { p: PHOTOS.wardrobe, g: 'rooms' },
 ];
 

@@ -2,6 +2,7 @@
 // `night` names the lit twin shown when the site is switched to night.
 const v2 = (name, w, h, alt, extra = {}) => ({ src: `/img/v2/${name}.webp`, sm: `/img/v2/${name}-sm.webp`, w, h, alt, ...extra });
 const v1 = (name, w, h, alt, extra = {}) => ({ src: `/img/${name}.webp`, sm: `/img/${name}-sm.webp`, w, h, alt, ...extra });
+const addImg = (name, w, h, alt, extra = {}) => ({ src: `/img/additional/${name}.png`, sm: `/img/additional/${name}.png`, w, h, alt, ...extra });
 
 export const PHOTOS = {
   // Estate and grounds (new professional set)
@@ -46,4 +47,20 @@ export const PHOTOS = {
   gardenPath: v1('garden-path', 2000, 1333, 'Garden path through the lawns towards the buildings', { night: 'nightLawn' }),
   amphitheatre: v1('amphitheatre', 2000, 1500, 'Open-air stepped seating area bordered by red plants'),
   poolWide: v1('pool-wide', 2000, 1500, 'Long view of the swimming pool and deck', { night: 'nightPool' }),
+
+  // High-resolution photography of amenities and activity zones
+  tableTennis: addImg('table-tennis', 1448, 1086, 'Clubhouse indoor games room with Stag table tennis table and scenic farm views'),
+  carroms: addImg('carroms', 1448, 1086, 'Indoor clubhouse carrom boards with table tennis in the background'),
+  carroms2: addImg('carroms-2', 1086, 1448, 'Indoor recreation area with carrom board setup'),
+  gym: addImg('gym', 1448, 1086, 'Modern air-conditioned fitness gym with treadmill, elliptical, and weights'),
+  gym1: addImg('gym-1', 1086, 1448, 'Fitness gym with cardio equipment and weights'),
+  banquetSpace: addImg('banquet-space', 1448, 1086, 'Spacious indoor banquet hall with tall windows and marble flooring'),
+  banquetFunction: addImg('banquet-function', 1448, 1086, 'Indoor banquet hall decorated for a function with round dining tables and buffet setup'),
+  conferenceRoom: addImg('conference-room', 1448, 1086, 'Executive air-conditioned conference room with boardroom table and leather seating'),
+  outdoorEventLawn: addImg('outdoor-event-lawn', 1448, 1086, 'Expansive manicured party lawn with palm trees and event staging area'),
+  outdoorRestaurant: addImg('outdoor-restaurant', 1448, 1086, 'Outdoor dining under shaded circular pergolas on the lawn'),
+  restaurantArea: addImg('restaurant-area', 1448, 1086, 'Farm Kitchen indoor dining hall with tables and seating'),
+  readingArea: addImg('reading-area', 1086, 1448, 'Cozy indoor reading nook with bookshelf and armchair'),
+  bonfire: addImg('bonfire', 1448, 1086, 'Stone fire pit on the lawn for evening bonfires'),
+  poolDay: addImg('swimming-pool', 1448, 1086, 'Curved lagoon swimming pool in bright daylight surrounded by greenery'),
 };

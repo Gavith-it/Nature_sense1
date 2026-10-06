@@ -7,6 +7,42 @@ import { CONTACT, PHOTOS, waLink } from '../site';
 // Curated high-resolution photography from the user's event folder (strictly omitting Farm Kitchen and Toilets)
 const EVENT_PHOTOS = [
   {
+    id: 'banquet-function',
+    title: 'Decorated Indoor Banquet Space',
+    category: 'lawns',
+    categoryLabel: 'Event Halls',
+    desc: 'Spacious banquet hall decorated for celebratory events, family functions, and dining receptions.',
+    src: '/img/additional/banquet-function.png',
+    alt: 'Decorated indoor banquet hall for functions at Nature Senses Farm Stay',
+  },
+  {
+    id: 'conference-room',
+    title: 'Executive Air-Conditioned Conference Hall',
+    category: 'lawns',
+    categoryLabel: 'Corporate Offsites',
+    desc: 'Executive conference room with ergonomic leather seating and presentation equipment.',
+    src: '/img/additional/conference-room.png',
+    alt: 'Executive air-conditioned conference room at Nature Senses Farm Stay',
+  },
+  {
+    id: 'outdoor-event-lawn',
+    title: 'Expansive Outdoor Party Lawn',
+    category: 'lawns',
+    categoryLabel: 'Party Lawns',
+    desc: 'Vast manicured green lawn framed by palms and boundary panels for outdoor gatherings and parties.',
+    src: '/img/additional/outdoor-event-lawn.png',
+    alt: 'Expansive manicured party lawn at Nature Senses Farm Stay',
+  },
+  {
+    id: 'bonfire',
+    title: 'Sunken Stone Bonfire Arena',
+    category: 'lawns',
+    categoryLabel: 'Evening Gathering',
+    desc: 'Rustic sunken amphitheatre stone fire pit with illuminated step seating for evening bonfires and celebrations.',
+    src: '/img/additional/bonfire.png',
+    alt: 'Sunken stone bonfire pit with lit steps at Nature Senses Farm Stay',
+  },
+  {
     id: 'walkway',
     title: 'Sunset Garden Walkway',
     category: 'lawns',
@@ -324,7 +360,7 @@ export default function Packages() {
             <article className="group flex flex-col rounded-sign overflow-hidden border border-ink/10 bg-card shadow-sm hover:shadow-md transition-all duration-300">
               <div className="relative aspect-[16/10] overflow-hidden bg-wall">
                 <Photo
-                  photo={PHOTOS.clubhouse}
+                  photo={PHOTOS.conferenceRoom || PHOTOS.clubhouse}
                   night="nightClubhouse"
                   sizes="(min-width: 768px) 48vw, 100vw"
                   className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
@@ -377,7 +413,7 @@ export default function Packages() {
             <article className="group flex flex-col rounded-sign overflow-hidden border border-ink/10 bg-card shadow-sm hover:shadow-md transition-all duration-300">
               <div className="relative aspect-[16/10] overflow-hidden bg-wall">
                 <Photo
-                  photo={PHOTOS.pergolaLawn}
+                  photo={PHOTOS.outdoorEventLawn || PHOTOS.pergolaLawn}
                   night="nightLawn"
                   sizes="(min-width: 768px) 48vw, 100vw"
                   className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
