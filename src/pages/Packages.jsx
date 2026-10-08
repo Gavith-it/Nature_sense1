@@ -294,12 +294,12 @@ export default function Packages() {
       <section className="relative overflow-hidden bg-wall-2">
         <div className="relative h-[56svh] min-h-[22rem] max-h-[42rem] lg:h-[min(72svh,48rem)] lg:max-h-none">
           <Photo
-            photo={PHOTOS.pergolaLawn}
-            night="nightLawn"
+            photo={PHOTOS.aerialSunset}
+            night="nightEstate"
             eager
             unveil={false}
             rounded={false}
-            position="50% 60%"
+            position="50% 50%"
             sizes="100vw"
             className="absolute inset-0 h-full w-full"
           />
@@ -360,8 +360,7 @@ export default function Packages() {
             <article className="group flex flex-col rounded-sign overflow-hidden border border-ink/10 bg-card shadow-sm hover:shadow-md transition-all duration-300">
               <div className="relative aspect-[16/10] overflow-hidden bg-wall">
                 <Photo
-                  photo={PHOTOS.conferenceRoom || PHOTOS.clubhouse}
-                  night="nightClubhouse"
+                  photo={PHOTOS.banquetFunction}
                   sizes="(min-width: 768px) 48vw, 100vw"
                   className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />

@@ -131,7 +131,8 @@ const DETAIL = {
     rows: [
       ['Cuisines', 'South Indian, North Indian & Chinese'],
       ['Setting', 'Spacious countryside dining hall'],
-      ['Hours', 'Breakfast, Lunch, Hi-Tea & Dinner'],
+      ['Hours', '9:30 AM to 10:00 PM'],
+      ['Meals', 'Breakfast, Lunch, Hi-Tea & Dinner'],
     ],
   },
 };
@@ -183,12 +184,12 @@ export default function Facilities() {
       <section className="relative overflow-hidden bg-wall-2">
         <div className="relative h-[56svh] min-h-[22rem] max-h-[42rem] lg:h-[min(72svh,48rem)] lg:max-h-none">
           <Photo
-            photo={PHOTOS.aerialDay}
+            photo={PHOTOS.aerialSunset}
             night="nightEstate"
             eager
             unveil={false}
             rounded={false}
-            position="50% 55%"
+            position="50% 50%"
             sizes="100vw"
             className="absolute inset-0 h-full w-full"
           />

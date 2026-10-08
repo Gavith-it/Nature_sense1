@@ -2,10 +2,10 @@ import React from 'react';
 
 // Drive routes from Bangalore, drawn like a transit line diagram. Times are approximate.
 export const ROUTE_LINES = [
-  { from: 'Electronic City', km: '48 km', time: '55–65 min', stops: ['Hosur', 'Thally'] },
-  { from: 'JP Nagar / Bannerghatta', km: '58 km', time: '70–80 min', stops: ['Anekal', 'Thally'] },
-  { from: 'Silk Board / Koramangala', km: '62 km', time: '75–85 min', stops: ['Hosur Road', 'Hosur'] },
-  { from: 'Whitefield / Sarjapur', km: '66 km', time: '80–90 min', stops: ['Bagalur', 'Berigai', 'Denkanikottai'] },
+  { from: 'Electronic City', km: '48 km', time: '1 hr', stops: ['Attibele', 'TVS Factory', 'MMS School'] },
+  { from: 'Bannerghatta', km: '52 km', time: '1 hr', stops: ['Anekal', 'MMS School'] },
+  { from: 'Koramangala', km: '58 km', time: '1 hr 30 min', stops: ['Attibele', 'TVS Factory', 'MMS School'] },
+  { from: 'Sarjapur', km: '46 km', time: '1 hr 40 min', stops: ['Attibele', 'TVS Factory', 'MMS School'] },
 ];
 
 function Line({ stops }) {
@@ -15,7 +15,9 @@ function Line({ stops }) {
       <span className="absolute inset-x-0 top-1/2 h-1 -translate-y-1/2 rounded-full bg-ink/[0.12]" aria-hidden="true" />
       <span className="route-path absolute inset-x-0 top-1/2 h-1 -translate-y-1/2 origin-left rounded-full bg-brass" aria-hidden="true" />
       <span className="absolute left-0 top-1/2 h-3.5 w-3.5 -translate-y-1/2 rounded-full border-[3px] border-brass bg-wall" aria-hidden="true" />
-      <span className="route-stop absolute right-0 top-1/2 h-5 w-5 -translate-y-1/2 translate-x-1/2 rounded-full bg-brass ring-4 ring-brass/30" aria-hidden="true" />
+      <span className="route-stop absolute right-0 top-1/2 h-5 w-5 -translate-y-1/2 translate-x-1/2 rounded-full bg-brass ring-4 ring-brass/30" aria-hidden="true">
+        <span className="t-small font-semibold text-ink absolute left-1/2 top-4 hidden -translate-x-1/2 whitespace-nowrap sm:block">Property</span>
+      </span>
       {stops.map((s, i) => {
         const left = ((i + 1) / (n + 1)) * 100;
         return (

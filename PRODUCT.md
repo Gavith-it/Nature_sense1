@@ -57,7 +57,7 @@ White, contemporary buildings set in open farmland an hour from Bangalore, not a
 - **Name:** "Nature Senses Farm Stay". Tagline: "Where Nature Meets Comfort".
 - **Logo:** a circular rust-coloured badge with script lettering and a hummingbird (`public/img/logo.webp`).
 - **Restaurant name:** "Farm Kitchen".
-- **Contacts:** rooms and day outs +91 81432 32539 (also WhatsApp); events +91 99131 36868; email naturesensesfarmstays@gmail.com.
+- **Contacts:** phone and WhatsApp +91 99131 36868; email Sales@nsfarmstay.com.
 
 - **Visual preference (user, 21 Sep 2026):** quiet, modern, timeless and pleasing, never bold. Reference sites: Evolve Back resorts and Aman, plus touches of the resort's own identity. Soft natural colours.
 

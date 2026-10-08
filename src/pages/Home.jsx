@@ -14,7 +14,7 @@ const WAYS = [
     href: '/stay/',
     title: 'Stay the night',
     text: 'Balcony rooms and luxury glamping tents overlooking the pool and lawns. Swimming pool, gym, and outdoor games included.',
-    from: '₹3,000',
+    from: '₹3,500',
     unit: 'a room a night',
     photo: PHOTOS.balconyPoolView,
   },
@@ -24,7 +24,7 @@ const WAYS = [
     text: 'Host your celebrations in our indoor banquet hall or beautiful outdoor lawns, accommodating up to 200-400 guests, with a complimentary buffet lunch or dinner included with selected party packages.',
     from: '₹799',
     unit: 'a guest for party menus',
-    photo: PHOTOS.playLawn,
+    photo: PHOTOS.banquetFunction,
   },
 ];
 
@@ -214,7 +214,7 @@ function Ways() {
                 <Photo photo={w.photo} sizes="(min-width: 640px) 48vw, 100vw" className="aspect-[4/3] sm:aspect-[16/11] lg:aspect-[16/10]">
                   <span className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0)_40%,rgba(0,0,0,0.6)_100%)]" aria-hidden="true" />
                   <span className="absolute inset-x-0 bottom-0 p-5 text-white lg:p-7">
-                    <span className="block text-[0.9rem] text-white/80">From</span>
+                    <span className="block text-[0.9rem] text-white/80">Starting from</span>
                     <span className="num block text-[2.25rem] lg:text-[2.6rem] font-semibold leading-none tracking-[-0.035em]">{w.from}</span>
                     <span className="mt-1.5 block text-[0.9rem] text-white/80">{w.unit}</span>
                   </span>
@@ -354,7 +354,8 @@ function DayOut() {
             rows={[
               ['Cuisines', 'South Indian, North Indian & Chinese'],
               ['Setting', 'Spacious countryside dining hall'],
-              ['Hours', 'Breakfast, Lunch, Hi-Tea & Dinner'],
+              ['Hours', '9:30 AM to 10:00 PM'],
+              ['Meals', 'Breakfast, Lunch, Hi-Tea & Dinner'],
             ]}
           />
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">

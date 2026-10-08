@@ -141,7 +141,7 @@ function Footer() {
               NATURE SENSES
             </span>
             <span className="mt-2.5 sm:mt-3.5 block text-[0.72rem] sm:text-xs md:text-sm uppercase tracking-[0.38em] sm:tracking-[0.45em] font-medium text-[#A7834F]/85">
-              FARM STAY &amp; RESORTS
+              FARM STAY
             </span>
           </a>
         </div>
@@ -237,7 +237,7 @@ function Footer() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-white/60">
           <p>© {new Date().getFullYear()}. All rights reserved</p>
           <div className="flex items-center gap-2 sm:gap-3 text-white/60">
-            <a href="/stay/" className="hover:text-white transition-colors">Resort Policy &amp; Cancellation Policy</a>
+            <a href="/stay/" className="hover:text-white transition-colors">Farm Stay Policy &amp; Cancellation Policy</a>
             <span>•</span>
             <a href="/visit/" className="hover:text-white transition-colors">Privacy Policy</a>
           </div>

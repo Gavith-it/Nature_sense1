@@ -120,8 +120,7 @@ export default function Farmland() {
       <section className="relative overflow-hidden bg-wall-2">
         <div className="relative h-[56svh] min-h-[22rem] max-h-[42rem] lg:h-[min(70svh,46rem)] lg:max-h-none">
           <Photo
-            photo={PHOTOS.aerialSunset}
-            night="aerialNight"
+            photo={PHOTOS.farmlandHero}
             eager
             unveil={false}
             rounded={false}
@@ -370,7 +369,7 @@ export default function Farmland() {
         </div>
       </section>
 
-      <Closing title="Stay with nature. Own a piece of it." photo={PHOTOS.aerialFields} />
+      <Closing title="Stay with nature. Own a piece of it." photo={PHOTOS.farmlandClosing} />
     </Layout>
   );
 }

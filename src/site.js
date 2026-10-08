@@ -15,15 +15,16 @@ export function bookingUrl({ checkin, checkout, adults, children }) {
 }
 
 export const CONTACT = {
-  phone: '+91 81432 32539',
-  phoneHref: 'tel:+918143232539',
-  whatsapp: 'https://wa.me/918143232539',
+  phone: '+91 99131 36868',
+  phoneHref: 'tel:+919913136868',
+  whatsapp: 'https://wa.me/919913136868',
   eventsPhone: '+91 99131 36868',
   eventsPhoneHref: 'tel:+919913136868',
   eventsWhatsapp: 'https://wa.me/919913136868',
-  email: 'naturesensesfarmstays@gmail.com',
+  email: 'Sales@nsfarmstay.com',
   area: 'Near Denkanikottai & Kuppati, Tamil Nadu',
-  maps: 'https://www.google.com/maps/search/?api=1&query=Nature+Senses+Farm+Stay+Denkanikottai',
+  maps: 'https://maps.app.goo.gl/bjnjCGH8WgnapuGs9',
+  mapsEmbed: 'https://maps.google.com/maps?q=' + encodeURIComponent('Nature Senses, Madhagondahally-Kakkadasam Rd, Thogarai Agraharam, Tamil Nadu 635107') + '&t=&z=14&ie=UTF8&iwloc=&output=embed',
 };
 
 export function waLink(base, text) {
@@ -31,7 +32,7 @@ export function waLink(base, text) {
 }
 
 export const NAV = [
-  { href: '/stay/', label: 'Stay', key: 'stay' },
+  { href: '/stay/', label: 'Accommodation', key: 'stay' },
   { href: '/packages/', label: 'Packages', key: 'packages' },
   { href: '/facilities/', label: 'Facilities', key: 'facilities' },
   { href: '/gallery/', label: 'Gallery', key: 'gallery' },
@@ -52,10 +53,10 @@ export const ROOM_RATES = [
 ];
 
 export const ROUTES = [
-  { from: 'Electronic City', km: '48 km', time: '55–65 min', via: 'Hosur, then Thally – Denkanikottai Road' },
-  { from: 'JP Nagar / Bannerghatta', km: '58 km', time: '70–80 min', via: 'Anekal and Thally' },
-  { from: 'Silk Board / Koramangala', km: '62 km', time: '75–85 min', via: 'Hosur Road (NH 44)' },
-  { from: 'Whitefield / Sarjapur', km: '66 km', time: '80–90 min', via: 'Bagalur, Berigai and Denkanikottai' },
+  { from: 'Electronic City', km: '48 km', time: '1 hr', via: 'Attibele, TVS Factory, MMS School to Property' },
+  { from: 'Bannerghatta', km: '52 km', time: '1 hr', via: 'Anekal, MMS School to Property' },
+  { from: 'Koramangala', km: '58 km', time: '1 hr 30 min', via: 'Attibele, TVS Factory, MMS School to Property' },
+  { from: 'Sarjapur', km: '46 km', time: '1 hr 40 min', via: 'Attibele, TVS Factory, MMS School to Property' },
 ];
 
 // The estate's numbered zones. Numbers stay the same on every page and on the site plan.
@@ -69,4 +70,4 @@ export const ZONES = [
   { n: 7, key: 'games', name: 'Games room and gym', short: 'Games and gym', note: 'In the reception building: billiards, table tennis, carrom, gym', hours: TIMES.amenities },
 ];
 
-export const WA_HELLO = 'https://wa.me/918143232539?text=' + encodeURIComponent('Hi, I have a question about Nature Senses Farm Stay.');
+export const WA_HELLO = 'https://wa.me/919913136868?text=' + encodeURIComponent('Hi, I have a question about Nature Senses Farm Stay.');

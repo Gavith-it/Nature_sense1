@@ -8,17 +8,16 @@ import { CONTACT, PHOTOS, TIMES, WA_HELLO, waLink } from '../site';
 const FAQ = [
   ['What time is check-in and check-out?', `Check-in is from ${TIMES.checkIn} and check-out is by ${TIMES.checkOut}.`],
   ['Are the pool, gym and games included when we stay?', `Yes. Staying guests use the pool, gym, indoor games and play area at no extra charge, ${TIMES.amenities}.`],
-  ['Is there a restaurant?', 'Yes. Farm Kitchen, our dining hall, serves the day-out lunch and hi-tea and caters events.'],
-  ['What do children pay at the pool?', 'Children aged 5 to 12 pay ₹200 per session if you are visiting only for the pool. Children under 12 must be with an adult.'],
+  ['Is there a restaurant?', 'Yes, our in-house restaurant, Nature Senses Farm Kitchen, serves delicious South Indian, North Indian, and Chinese cuisines.'],
+  ['How much is pool access?', 'If you have booked a room stay, pool access is included at no extra charge. If you are visiting only for the pool, charges are ₹400 per session. Children under 12 must be with an adult.'],
   ['Can we bring our own food or drinks?', 'No. Outside food, drinks and caterers are not allowed.'],
-  ['How do I book a day out or an event?', `Message or call us. Day outs: ${CONTACT.phone}. Events and parties: ${CONTACT.eventsPhone}.`],
+  ['How do I book a day out or an event?', `Message or call us at ${CONTACT.phone}.`],
   ['Are prices inclusive of tax?', 'No. GST is added to room, day-out and package prices.'],
 ];
 
 const CONTACTS = [
-  { icon: Phone, label: 'Rooms and day outs', value: CONTACT.phone, href: CONTACT.phoneHref },
+  { icon: Phone, label: 'Reservations & enquiries', value: CONTACT.phone, href: CONTACT.phoneHref },
   { icon: MessageCircle, label: 'WhatsApp', value: 'Message us', href: WA_HELLO },
-  { icon: Phone, label: 'Events and parties', value: CONTACT.eventsPhone, href: CONTACT.eventsPhoneHref },
   { icon: Mail, label: 'Email', value: CONTACT.email, href: `mailto:${CONTACT.email}` },
 ];
 
@@ -49,8 +48,8 @@ export default function Visit() {
       <section className="relative overflow-hidden bg-wall-2">
         <div className="relative h-[56svh] min-h-[22rem] max-h-[42rem] lg:h-[min(70svh,46rem)] lg:max-h-none">
           <Photo
-            photo={PHOTOS.aerialFields}
-            night="nightEstateTop"
+            photo={PHOTOS.aerialSunset}
+            night="nightEstate"
             eager
             unveil={false}
             rounded={false}
@@ -112,28 +111,42 @@ export default function Visit() {
               <p className="mt-1.5 font-semibold text-ink text-sm sm:text-base">From {TIMES.checkIn}, out by {TIMES.checkOut}</p>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Direct Map & Location Actions */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-            <a
-              href={CONTACT.maps}
-              className="btn-act inline-flex items-center gap-2"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <MapPin size={18} strokeWidth={1.8} aria-hidden="true" />
-              <span>Open in Google Maps</span>
-            </a>
-            <a
-              href={waLink(CONTACT.whatsapp, 'Hi, could you share the exact location of Nature Senses Farm Stay?')}
-              className="btn-line inline-flex items-center gap-2"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <MessageCircle size={18} strokeWidth={1.8} aria-hidden="true" />
-              <span>Ask for the location pin</span>
-            </a>
-          </div>
+      {/* 3. Full-Frame Dark Theme Map Section */}
+      <section className="relative w-full bg-[#131F19] text-[#F5F1E8] pb-10 sm:pb-12 border-y border-white/10" aria-label="Interactive Location Map">
+        <div className="relative w-full h-[460px] sm:h-[540px] lg:h-[620px] overflow-hidden bg-[#172A22]">
+          <iframe
+            title="Nature Senses Farm Stay Exact Pinpoint Location"
+            src={CONTACT.mapsEmbed}
+            className="absolute inset-0 h-full w-full border-0 [filter:invert(90%)_hue-rotate(180deg)_contrast(105%)_brightness(95%)]"
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
+
+        {/* Direct Map & Location Actions in Dark Theme */}
+        <div className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4 px-4">
+          <a
+            href={CONTACT.maps}
+            className="btn bg-[#A7834F] text-white hover:bg-[#896A3D] inline-flex items-center gap-2 shadow-sm transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <MapPin size={18} strokeWidth={1.8} aria-hidden="true" />
+            <span>Open in Google Maps</span>
+          </a>
+          <a
+            href={waLink(CONTACT.whatsapp, 'Hi, could you share the exact location of Nature Senses Farm Stay?')}
+            className="btn border border-white/20 text-[#F5F1E8] hover:bg-white/10 hover:border-white/35 inline-flex items-center gap-2 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <MessageCircle size={18} strokeWidth={1.8} aria-hidden="true" />
+            <span>Ask for the location pin</span>
+          </a>
         </div>
       </section>
 

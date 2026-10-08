@@ -63,4 +63,6 @@ export const PHOTOS = {
   readingArea: addImg('reading-area', 1086, 1448, 'Cozy indoor reading nook with bookshelf and armchair'),
   bonfire: addImg('bonfire', 1448, 1086, 'Stone fire pit on the lawn for evening bonfires'),
   poolDay: addImg('swimming-pool', 1448, 1086, 'Curved lagoon swimming pool in bright daylight surrounded by greenery'),
+  farmlandHero: { src: '/img/farmland/farmland-hero.jpg', sm: '/img/farmland/farmland-hero.jpg', w: 1920, h: 1080, alt: 'Aerial view of lush green managed farmland plots near Bangalore' },
+  farmlandClosing: { src: '/img/farmland/farmland-closing.jpg', sm: '/img/farmland/farmland-closing.jpg', w: 1920, h: 1080, alt: 'Scenic organic farmland landscape with fruit orchards and country path' },
 };
