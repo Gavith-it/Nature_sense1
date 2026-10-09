@@ -26,6 +26,8 @@ export const CONTACT = {
   area: 'Near Denkanikottai & Kuppati, Tamil Nadu',
   maps: 'https://maps.app.goo.gl/bjnjCGH8WgnapuGs9',
   mapsEmbed: 'https://maps.google.com/maps?q=' + encodeURIComponent('Nature Senses, Madhagondahally-Kakkadasam Rd, Thogarai Agraharam, Tamil Nadu 635107') + '&t=&z=14&ie=UTF8&iwloc=&output=embed',
+  instagram: 'https://www.instagram.com/naturesenses_farmstay/',
+  facebook: 'https://www.facebook.com/NatureSensesFarmstay',
 };
 
 export function waLink(base, text) {

@@ -170,7 +170,7 @@ function Footer() {
 
             <div className="flex items-center gap-3 pt-3">
               <a
-                href="https://instagram.com"
+                href={CONTACT.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="h-9 w-9 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:text-[#A7834F] hover:border-[#A7834F] transition-all"
@@ -179,7 +179,7 @@ function Footer() {
                 <Instagram size={17} strokeWidth={1.75} />
               </a>
               <a
-                href="https://facebook.com"
+                href={CONTACT.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="h-9 w-9 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:text-[#A7834F] hover:border-[#A7834F] transition-all"
