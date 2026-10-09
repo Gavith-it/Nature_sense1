@@ -151,8 +151,8 @@ function Footer() {
           {/* Column 1: Address, Email, Phone, Socials */}
           <div className="md:col-span-5 lg:col-span-5 space-y-4 text-[#F5F1E8]/90 font-light leading-relaxed">
             <p className="text-[#F5F1E8]/85">
-              Hosur - Denkanikottai Rd,<br />
-              Kuppati, Near Denkanikottai, Tamil Nadu 635107
+              Madhagondahally-Kakkadasam Rd,<br />
+              Thogarai Agraharam, Tamil Nadu 635107
             </p>
             <p className="pt-1.5">
               <a

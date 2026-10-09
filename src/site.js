@@ -22,6 +22,7 @@ export const CONTACT = {
   eventsPhoneHref: 'tel:+919913136868',
   eventsWhatsapp: 'https://wa.me/919913136868',
   email: 'Sales@nsfarmstay.com',
+  address: 'Madhagondahally-Kakkadasam Rd, Thogarai Agraharam, Tamil Nadu 635107',
   area: 'Near Denkanikottai & Kuppati, Tamil Nadu',
   maps: 'https://maps.app.goo.gl/bjnjCGH8WgnapuGs9',
   mapsEmbed: 'https://maps.google.com/maps?q=' + encodeURIComponent('Nature Senses, Madhagondahally-Kakkadasam Rd, Thogarai Agraharam, Tamil Nadu 635107') + '&t=&z=14&ie=UTF8&iwloc=&output=embed',
