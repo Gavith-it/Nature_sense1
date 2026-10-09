@@ -35,19 +35,19 @@ export default function RouteLines({ className = '' }) {
   return (
     <ol className={className}>
       {ROUTE_LINES.map((r) => (
-        <li key={r.from} className="rule grid gap-x-8 gap-y-1 border-t py-5 last:border-b md:grid-cols-[14rem_1fr_7rem] md:items-center">
+        <li key={r.from} className="rule grid gap-x-6 lg:gap-x-8 gap-y-2 border-t py-5 last:border-b md:grid-cols-[13rem_1fr_8.5rem] md:items-center">
           <div className="flex items-baseline justify-between gap-4 md:block">
             <p className="font-semibold leading-snug">From {r.from}</p>
             <p className="t-small muted md:mt-0.5">{r.km}</p>
           </div>
-          <div className="pr-3">
+          <div className="pr-4 pl-1">
             <Line stops={r.stops} />
             <p className="t-small muted -mt-1 sm:hidden">Via {r.stops.join(', ')}</p>
           </div>
-          <p className="flex items-center gap-2 md:justify-end">
-            <span className="num text-[1.35rem] font-semibold tracking-[-0.02em]">{r.time}</span>
+          <div className="flex items-center md:justify-end">
+            <span className="num text-[1.25rem] sm:text-[1.35rem] font-semibold tracking-[-0.02em] whitespace-nowrap text-right">{r.time}</span>
             <span className="sr-only">, via {r.stops.join(', ')}</span>
-          </p>
+          </div>
         </li>
       ))}
     </ol>

@@ -197,16 +197,16 @@ function Footer() {
                 <a href="/" className="hover:text-[#A7834F] transition-colors">Home</a>
               </li>
               <li>
-                <a href="/stay/" className="hover:text-[#A7834F] transition-colors">Villas &amp; Rooms</a>
+                <a href="/stay/" className="hover:text-[#A7834F] transition-colors">Accommodation</a>
               </li>
               <li>
-                <a href="/packages/" className="hover:text-[#A7834F] transition-colors">Suites &amp; Cottages</a>
+                <a href="/packages/" className="hover:text-[#A7834F] transition-colors">Packages</a>
               </li>
               <li>
-                <a href="/farmland/" className="hover:text-[#A7834F] transition-colors">Managed Farmlands</a>
+                <a href="/facilities/" className="hover:text-[#A7834F] transition-colors">Facilities</a>
               </li>
               <li>
-                <a href="/facilities/" className="hover:text-[#A7834F] transition-colors">Experiences</a>
+                <a href="/farmland/" className="hover:text-[#A7834F] transition-colors">Farmland</a>
               </li>
             </ul>
           </div>
@@ -215,13 +215,13 @@ function Footer() {
           <div className="md:col-span-3 lg:col-span-3">
             <ul className="space-y-3 font-normal text-[#F5F1E8]/85">
               <li>
-                <a href="/#around-estate" className="hover:text-[#A7834F] transition-colors">Virtual Tour</a>
-              </li>
-              <li>
                 <a href="/gallery/" className="hover:text-[#A7834F] transition-colors">Gallery</a>
               </li>
               <li>
-                <a href="/events/" className="hover:text-[#A7834F] transition-colors">Contact Us</a>
+                <a href="/visit/" className="hover:text-[#A7834F] transition-colors">Visit</a>
+              </li>
+              <li>
+                <a href="/#around-estate" className="hover:text-[#A7834F] transition-colors">Virtual Tour</a>
               </li>
               <li>
                 <a href={BOOKING_URL} className="hover:text-[#A7834F] transition-colors">Reservation</a>

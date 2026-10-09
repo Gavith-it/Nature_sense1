@@ -66,7 +66,7 @@ export const ZONES = [
   { n: 3, key: 'pool', name: 'Swimming pool', short: 'Pool', note: 'Curved shallow end for children', hours: TIMES.amenities },
   { n: 4, key: 'play', name: "Children's play area", short: 'Play area', note: 'Slides, swings and gazebos for parents', hours: 'Open to all guests' },
   { n: 5, key: 'lawn', name: 'Lawns and party lawn', short: 'Lawns', note: 'Up to 50 guests for events', hours: 'All day' },
-  { n: 6, key: 'kitchen', name: 'Farm Kitchen', short: 'Farm Kitchen', note: 'Dining hall for lunch, hi-tea and event menus', hours: 'Meal times' },
+  { n: 6, key: 'kitchen', name: 'Nature Senses Farm Kitchen', short: 'Nature Senses Farm Kitchen', note: 'Dining hall for lunch, hi-tea and event menus', hours: 'Meal times' },
   { n: 7, key: 'games', name: 'Games room and gym', short: 'Games and gym', note: 'In the reception building: billiards, table tennis, carrom, gym', hours: TIMES.amenities },
 ];
 

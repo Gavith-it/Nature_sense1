@@ -345,7 +345,7 @@ function DayOut() {
     <section className="rule border-t py-16 lg:py-28" aria-labelledby="day-title">
       <div className="wrap grid gap-10 lg:grid-cols-12 lg:gap-12">
         <div className="lg:col-span-5">
-          <SectionHead inline id="day-title" zone={6} title="Farm Kitchen" />
+          <SectionHead inline id="day-title" zone={6} title="Nature Senses Farm Kitchen" />
           <p className="t-lede muted mt-5">
             Good food is an essential part of every getaway. Our Farm Kitchen brings together freshly prepared flavours across South Indian, North Indian and Chinese cuisines, offering something for every palate in a relaxed countryside setting.
           </p>
@@ -360,7 +360,7 @@ function DayOut() {
           />
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
             <a href="/facilities/#kitchen" className="link font-medium text-ink hover:text-[#A7834F]">
-              Explore Farm Kitchen &rarr;
+              Explore Nature Senses Farm Kitchen &rarr;
             </a>
             <a href="/day-out/" className="link">Day packages &amp; menus</a>
           </div>

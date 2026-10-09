@@ -159,16 +159,9 @@ html[data-time="night"] :is(.on-plate, .sign) { --act: 167 131 79; --act-hover: 
 
 @media (max-width: 767px) { .stage-frame .stage { --fx: 0.6 !important; } }
 
-/* Route line: drawn as it scrolls into view. */
+/* Route line: transit diagram lines are fully drawn from origin to destination. */
+.route-path { transform: translateY(-50%); }
 
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .route-path { animation: grow linear both; animation-timeline: view(); animation-range: entry 20% cover 55%; }
-    .route-stop { animation: stop-in linear both; animation-timeline: view(); animation-range: entry 30% cover 50%; }
-    @keyframes grow { from { transform: translateY(-50%) scaleX(0); } to { transform: translateY(-50%) scaleX(1); } }
-    @keyframes stop-in { from { opacity: 0.25; } to { opacity: 1; } }
-  }
-}
 
 /* Horizontal strips: native scroll with snap, aligned to the page wrapper. */
 .strip {
