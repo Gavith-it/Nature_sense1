@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import Layout from '../components/Layout';
 import { Closing, Photo, ScrollRevealText } from '../components/ui';
-import { CONTACT, PHOTOS, waLink } from '../site';
+import { CONTACT, FARMLAND_CONTACT, PHOTOS, waLink } from '../site';
 
 const METRICS = [
   {
@@ -110,7 +110,7 @@ const PROCESS_STEPS = [
 
 export default function Farmland() {
   const whatsappFarmland = waLink(
-    CONTACT.whatsapp,
+    FARMLAND_CONTACT.whatsapp,
     'Hi, I would like to enquire about Nature Senses Managed Farmlands plots and schedule a site visit.'
   );
 
@@ -358,11 +358,11 @@ export default function Farmland() {
                 <span>Book a Site Visit on WhatsApp</span>
               </a>
               <a
-                href={CONTACT.phoneHref}
+                href={FARMLAND_CONTACT.phoneHref}
                 className="inline-flex items-center gap-2 rounded-full border border-[#E5CA8F]/50 px-6 py-3.5 text-sm font-semibold text-[#E5CA8F] transition-all duration-200 hover:bg-[#E5CA8F]/15 hover:border-[#E5CA8F]"
               >
                 <Phone size={18} strokeWidth={1.8} aria-hidden="true" />
-                <span>Call {CONTACT.phone}</span>
+                <span>Call {FARMLAND_CONTACT.phone}</span>
               </a>
             </div>
           </div>

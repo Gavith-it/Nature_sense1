@@ -30,6 +30,12 @@ export const CONTACT = {
   facebook: 'https://www.facebook.com/NatureSensesFarmstay',
 };
 
+export const FARMLAND_CONTACT = {
+  phone: '+91 88805 00999',
+  phoneHref: 'tel:+918880500999',
+  whatsapp: 'https://wa.me/918880500999',
+};
+
 export function waLink(base, text) {
   return `${base}?text=${encodeURIComponent(text)}`;
 }

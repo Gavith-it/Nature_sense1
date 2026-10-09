@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Menu, X, MessageCircle, Phone, Instagram, Facebook } from 'lucide-react';
-import { NAV, BOOKING_URL, CONTACT, TIMES, WA_HELLO } from '../site';
+import { NAV, BOOKING_URL, CONTACT, FARMLAND_CONTACT, TIMES, WA_HELLO, waLink } from '../site';
 import { TimeProvider, TimeSwitch } from './time';
 
 function Wordmark({ onPlate = false }) {
@@ -18,6 +18,9 @@ function Wordmark({ onPlate = false }) {
 // The site header is a sign in two positions. Over the home page's opening photograph it floats as a
 // plate; everywhere else, and as soon as you scroll, it docks into a full-width sign band at the top.
 function Header({ page, floating }) {
+  const isFarmland = page === 'farmland';
+  const phone = isFarmland ? FARMLAND_CONTACT.phone : CONTACT.phone;
+  const phoneHref = isFarmland ? FARMLAND_CONTACT.phoneHref : CONTACT.phoneHref;
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -119,7 +122,7 @@ function Header({ page, floating }) {
               <div className="mt-6 grid gap-3">
                 <a href={BOOKING_URL} className="btn-act w-full">Book a stay</a>
                 <a href={WA_HELLO} className="btn-line w-full"><MessageCircle size={18} strokeWidth={1.8} aria-hidden="true" /> Message on WhatsApp</a>
-                <a href={CONTACT.phoneHref} className="btn-line w-full"><Phone size={18} strokeWidth={1.8} aria-hidden="true" /> Call {CONTACT.phone}</a>
+                <a href={phoneHref} className="btn-line w-full"><Phone size={18} strokeWidth={1.8} aria-hidden="true" /> Call {phone}</a>
               </div>
             </nav>
           </div>
@@ -130,7 +133,11 @@ function Header({ page, floating }) {
   );
 }
 
-function Footer() {
+function Footer({ page }) {
+  const isFarmland = page === 'farmland';
+  const phone = isFarmland ? FARMLAND_CONTACT.phone : CONTACT.phone;
+  const phoneHref = isFarmland ? FARMLAND_CONTACT.phoneHref : CONTACT.phoneHref;
+
   return (
     <footer className="w-full bg-[#172A22] text-[#F5F1E8] pt-14 sm:pt-20 lg:pt-24 pb-12 sm:pb-16 mt-0">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-20">
@@ -163,8 +170,8 @@ function Footer() {
               </a>
             </p>
             <p className="pt-0.5 text-[#F5F1E8]/90">
-              <a href={CONTACT.phoneHref} className="hover:text-[#A7834F] transition-colors">
-                {CONTACT.phone}
+              <a href={phoneHref} className="hover:text-[#A7834F] transition-colors">
+                {phone}
               </a>
             </p>
 
@@ -247,13 +254,19 @@ function Footer() {
   );
 }
 
-function ActionBar() {
+function ActionBar({ page }) {
+  const isFarmland = page === 'farmland';
+  const phoneHref = isFarmland ? FARMLAND_CONTACT.phoneHref : CONTACT.phoneHref;
+  const wa = isFarmland
+    ? waLink(FARMLAND_CONTACT.whatsapp, 'Hi, I would like to enquire about Nature Senses Managed Farmlands plots and schedule a site visit.')
+    : WA_HELLO;
+
   return (
     <div className="fixed inset-x-0 bottom-0 z-30 border-t border-ink/10 bg-wall/95 p-2 backdrop-blur-md md:hidden" style={{ paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom))' }}>
       <div className="grid grid-cols-[1fr_1fr_1.35fr] gap-2">
-        <a href={CONTACT.phoneHref} className="btn-line min-h-12 px-2"><Phone size={17} strokeWidth={1.8} aria-hidden="true" /> Call</a>
-        <a href={WA_HELLO} className="btn-line min-h-12 px-2"><MessageCircle size={17} strokeWidth={1.8} aria-hidden="true" /> WhatsApp</a>
-        <a href={BOOKING_URL} className="btn-act min-h-12 px-2">Book a stay</a>
+        <a href={phoneHref} className="btn-line min-h-12 px-2"><Phone size={17} strokeWidth={1.8} aria-hidden="true" /> Call</a>
+        <a href={wa} className="btn-line min-h-12 px-2"><MessageCircle size={17} strokeWidth={1.8} aria-hidden="true" /> WhatsApp</a>
+        <a href={isFarmland ? phoneHref : BOOKING_URL} className="btn-act min-h-12 px-2">{isFarmland ? 'Enquire' : 'Book a stay'}</a>
       </div>
     </div>
   );
@@ -266,9 +279,9 @@ export default function Layout({ page, children, floating = false }) {
       <a href="#main" className="sr-only z-50 rounded-full bg-ink px-4 py-2 text-wall focus:not-sr-only focus:fixed focus:left-4 focus:top-4">Skip to content</a>
       <Header page={page} floating={floating} />
       <main id="main" tabIndex={-1} className={`outline-none ${floating ? '' : 'pt-16 lg:pt-[4.25rem]'}`}>{children}</main>
-      <Footer />
+      <Footer page={page} />
       <div className="h-20 md:hidden" aria-hidden="true" />
-      <ActionBar />
+      <ActionBar page={page} />
     </TimeProvider>
   );
 }
