@@ -7,25 +7,25 @@ import { CONTACT, PHOTOS, waLink } from '../site';
 const PACKAGES = [
   {
     name: 'Vegetarian',
-    price: '₹2,000',
+    price: '₹999',
     lunch: ['Baby corn pepper dry', 'Veg Manchurian', 'Dal fry', 'Veg kurma', 'Roti and naan', 'Rice and sambar', 'Indian sweets', 'Ice cream'],
-    tea: ['Onion and mirchi bhajji', 'Sandwiches', 'Cutlets', 'Filter coffee or tea'],
+    tea: ['Hot snack', 'Filter coffee or tea'],
   },
   {
     name: 'Non-vegetarian',
-    price: '₹2,200',
-    note: 'The full vegetarian spread, plus two chicken dishes.',
-    lunch: ['Rayalaseema chicken dry', 'Kadai chicken', 'Everything on the vegetarian lunch'],
-    tea: ['Onion and mirchi bhajji', 'Sandwiches', 'Cutlets', 'Filter coffee or masala tea'],
+    price: '₹1,199',
+    note: 'The full vegetarian spread, plus chicken specialties.',
+    lunch: ['Chicken dry', 'Chicken curry', 'Everything on the vegetarian lunch'],
+    tea: ['Hot snack', 'Filter coffee or masala tea'],
   },
 ];
 
 const DAY = [
   ['9:30 AM', 'Arrive to a refreshing welcome drink and explore the clubhouse, gardens and open lawns.'],
   ['11:30 AM', 'Clubhouse recreation: billiards, table tennis, carrom, and fitness gym.'],
-  ['1:00 PM', 'Farm Kitchen Buffet Lunch: a full, freshly cooked regional spread.'],
+  ['1:00 PM', 'Farm Kitchen Lunch: a full, freshly cooked regional spread.'],
   ['3:30 PM', 'Afternoon swim in the curved lagoon pool beneath palm shade.'],
-  ['5:30 PM', 'Hi-tea with hot bhajji, cutlets, and South Indian filter coffee.'],
+  ['5:30 PM', 'Hi-tea with hot snack and South Indian filter coffee.'],
   ['6:30 PM', 'Children’s play park, twilight stroll on illuminated paths, and evening leisure.'],
 ];
 
@@ -36,7 +36,7 @@ const STEPS = [
 ];
 
 export default function DayOut() {
-  const enquire = waLink(CONTACT.whatsapp, 'Hi, I would like to book a day out at Nature Senses. Date: , Number of guests: , Veg / Non-veg: ');
+  const enquire = waLink(CONTACT.whatsapp, 'Hi, I would like to book a day out at Nature Senses.\nDate: \nNumber of guests: \nPreference (Veg ₹999+GST / Non-veg ₹1,199+GST): ');
   return (
     <Layout page="day-out">
       <PageHero
@@ -46,8 +46,8 @@ export default function DayOut() {
         position="50% 65%"
         facts={[
           ['Hours', '9:30 AM to 6:30 PM'],
-          ['Per person', 'From ₹2,000 + GST'],
-          ['Included', 'Welcome drink, lunch, hi-tea and every facility'],
+          ['Per person', 'From ₹999 + GST'],
+          ['Included', 'Swimming pool, Welcome drink, Lunch, Gym, Indoor games & Hi-tea'],
         ]}
         actions={
           <>

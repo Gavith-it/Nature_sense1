@@ -1,6 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
-import { MessageCircle, Phone, Users, Sparkles, Building2, Maximize2, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import {
+  MessageCircle,
+  Phone,
+  Users,
+  Sparkles,
+  Building2,
+  Maximize2,
+  X,
+  ChevronLeft,
+  ChevronRight,
+  Check,
+  CheckCircle2,
+  Waves,
+  Dumbbell,
+  Clock,
+  Sun,
+} from 'lucide-react';
 import { Closing, Photo, ScrollRevealText } from '../components/ui';
 import { CONTACT, PHOTOS, waLink } from '../site';
 
@@ -266,6 +282,7 @@ const VENUES = [
 ];
 
 export default function Packages() {
+  const [dayOutTab, setDayOutTab] = useState('individual');
   const [activeFilter, setActiveFilter] = useState('all');
   const [lightboxIndex, setLightboxIndex] = useState(null);
 
@@ -273,19 +290,29 @@ export default function Packages() {
     ? EVENT_PHOTOS
     : EVENT_PHOTOS.filter((p) => p.category === activeFilter);
 
+  const dayOutWa = waLink(
+    CONTACT.whatsapp,
+    'Hi, I would like to book an Individual Day-Out Package at Nature Senses.\nPreference: Veg (₹999 + GST) / Non-Veg (₹1,199 + GST)\nDate: \nNumber of Guests: '
+  );
+
+  const teamWa = waLink(
+    CONTACT.eventsWhatsapp,
+    'Hi, I would like to enquire about a Team Day-Out Package at Nature Senses.\nCompany / Group Name: \nDate: \nEstimated Team Size: '
+  );
+
   const corporateWa = waLink(
     CONTACT.eventsWhatsapp,
-    'Hi, I would like to enquire about Corporate Events / Offsites at Nature Senses.\nDate: \nNumber of Guests: \nCompany Name: '
+    'Hi, I would like to enquire about Corporate Events / Offsites (Starting from ₹799+GST) at Nature Senses.\nDate: \nNumber of Guests: \nCompany Name: '
   );
 
   const familyWa = waLink(
     CONTACT.eventsWhatsapp,
-    'Hi, I would like to enquire about Family & Friends Gatherings at Nature Senses.\nEvent Type (Birthday/Anniversary/Reunion): \nDate: \nNumber of Guests: '
+    'Hi, I would like to enquire about Family & Friends Celebrations (Starting from ₹799+GST) at Nature Senses.\nEvent Type (Birthday/Anniversary/Reunion): \nDate: \nNumber of Guests: '
   );
 
   const generalWa = waLink(
     CONTACT.eventsWhatsapp,
-    'Hi, I would like to get a quote for a Package at Nature Senses.\nType: \nDate: \nGuests: '
+    'Hi, I would like to get a quote for a Package at Nature Senses.\nType (Day-Out / Events): \nDate: \nGuests: '
   );
 
   return (
@@ -323,12 +350,12 @@ export default function Packages() {
               </h1>
 
               <p className="mt-4 text-sm sm:text-base lg:text-lg text-white/85 max-w-2xl mx-auto leading-relaxed font-light">
-                Corporate offsites, family reunions, and celebrations in nature.
+                Day-out packages, corporate offsites, family reunions, and celebrations in nature.
               </p>
 
-              <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#E5CA8F]/20 backdrop-blur-md border border-[#E5CA8F]/40 px-4 py-1 text-xs sm:text-sm font-medium text-[#E5CA8F]">
+              <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#E5CA8F]/20 backdrop-blur-md border border-[#E5CA8F]/40 px-4 py-1.5 text-xs sm:text-sm font-medium text-[#E5CA8F]">
                 <Sparkles size={14} className="text-[#E5CA8F]" aria-hidden="true" />
-                <span>Packages starting from ₹799/- per person</span>
+                <span>Day-Out from ₹999 + GST • Events from ₹799 + GST</span>
               </div>
             </div>
           </div>
@@ -352,49 +379,115 @@ export default function Packages() {
         </div>
       </section>
 
-      {/* 3. The Two Packages Section (Luxury Showcase Cards) */}
+      {/* 3. The Two Core Packages (Events & Celebrations and Day-Out Package) */}
       <section className="pb-16 lg:pb-24" aria-labelledby="curated-packages">
         <div className="wrap">
-          <div className="grid gap-8 md:grid-cols-2 lg:gap-10">
-            {/* Package 1: Corporate Events */}
-            <article className="group flex flex-col rounded-sign overflow-hidden border border-ink/10 bg-card shadow-sm hover:shadow-md transition-all duration-300">
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-10 items-stretch">
+            
+            {/* ========================================================= */}
+            {/* CARD 1: EVENTS & CELEBRATIONS (Starting from ₹799 + GST)  */}
+            {/* ========================================================= */}
+            <article className="group flex flex-col rounded-sign overflow-hidden border-2 border-ink/10 bg-card shadow-sm hover:shadow-md transition-all duration-300">
+              {/* Image with Tag & Capacity */}
               <div className="relative aspect-[16/10] overflow-hidden bg-wall">
                 <Photo
                   photo={PHOTOS.banquetFunction}
-                  sizes="(min-width: 768px) 48vw, 100vw"
+                  sizes="(min-width: 1024px) 48vw, 100vw"
                   className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                <span className="absolute top-4 left-4 rounded-full bg-black/60 backdrop-blur-md px-3.5 py-1 text-xs font-medium text-white tracking-wide flex items-center gap-1.5">
-                  <Building2 size={13} aria-hidden="true" /> Beyond the Boardroom
+                <span className="absolute top-4 left-4 rounded-full bg-[#172A22]/90 backdrop-blur-md px-3.5 py-1 text-xs font-semibold text-[#E5CA8F] tracking-wide flex items-center gap-1.5 border border-[#A7834F]/40 shadow-xs">
+                  <Building2 size={13} aria-hidden="true" /> Events &amp; Celebrations
+                </span>
+                <span className="absolute top-4 right-4 rounded-full bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-medium text-white/90">
+                  10 to 200 Guests
                 </span>
               </div>
+
               <div className="p-6 sm:p-8 flex flex-col flex-1">
-                <div className="flex items-center justify-between gap-4">
-                  <h3 className="text-2xl font-semibold text-ink tracking-[-0.02em]">
-                    Corporate Events
-                  </h3>
-                  <span className="text-xs uppercase tracking-wider text-ink-2 font-medium">10 – 200 Guests</span>
-                </div>
-
-                <p className="mt-3 text-ink-2 text-sm sm:text-base leading-relaxed flex-1">
-                  Bring your team together in a refreshing countryside setting for meetings, team outings and corporate gatherings. Enjoy versatile indoor and outdoor spaces, recreational facilities, and a thoughtfully prepared lunch or dinner.
-                </p>
-
-                <div className="mt-6 pt-5 border-t border-ink/10 flex flex-wrap gap-2 text-xs text-ink-2">
-                  <span className="rounded-full bg-ink/[0.05] px-3 py-1 font-medium">AC Conference Hall</span>
-                  <span className="rounded-full bg-ink/[0.05] px-3 py-1 font-medium">High-Speed Wi-Fi & AV</span>
-                  <span className="rounded-full bg-ink/[0.05] px-3 py-1 font-medium">Team Outings & Lawns</span>
-                  <span className="rounded-full bg-ink/[0.05] px-3 py-1 font-medium">Indoor Games & Pool</span>
-                  <span className="rounded-full bg-ink/[0.05] px-3 py-1 font-medium">Farm Kitchen Meals</span>
-                </div>
-
-                <div className="mt-6 pt-5 border-t border-ink/10 flex items-center justify-between gap-4 flex-wrap">
-                  <div>
-                    <span className="text-xs text-ink-2 block">Starting from</span>
-                    <span className="text-xl font-semibold text-ink">₹799</span>
-                    <span className="text-xs text-ink-2"> / person + GST</span>
+                <div>
+                  <div className="flex items-center justify-between gap-4">
+                    <h3 className="text-2xl sm:text-3xl font-semibold text-ink tracking-[-0.02em]">
+                      Events &amp; Celebrations
+                    </h3>
                   </div>
-                  <div className="flex items-center gap-3">
+                  <p className="mt-2 text-xs sm:text-sm text-ink-2 leading-relaxed">
+                    Corporate offsites, team meetings, family reunions, birthdays, and celebrations in our air-conditioned conference hall and sprawling party lawns.
+                  </p>
+                </div>
+
+                {/* Pricing Box: Starting from ₹799 + GST */}
+                <div className="mt-5 p-4 rounded-xl bg-ink/[0.03] border border-ink/8 text-center flex items-center justify-between gap-4">
+                  <div className="text-left">
+                    <span className="text-[0.68rem] uppercase tracking-wider font-bold text-[#A7834F] block">
+                      PACKAGE PRICING
+                    </span>
+                    <span className="text-xs text-ink-2">Per person buffet spread</span>
+                  </div>
+                  <div className="text-right">
+                    <div className="flex items-baseline justify-end gap-1">
+                      <span className="text-xs text-ink-2 font-medium">Starting from</span>
+                      <span className="text-2xl sm:text-3xl font-bold text-ink">₹799</span>
+                    </div>
+                    <span className="text-[0.7rem] text-ink-2 block">+ GST / person</span>
+                  </div>
+                </div>
+
+                {/* Features & Inclusions */}
+                <div className="mt-5 pt-4 border-t border-ink/10 flex-1">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-[#A7834F] block mb-3">
+                    Venue Inclusions &amp; Amenities:
+                  </span>
+                  <ul className="space-y-2.5 text-xs sm:text-sm text-ink-2">
+                    <li className="flex items-start gap-2.5">
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#A7834F]/15 text-[#A7834F] mt-0.5">
+                        <Check size={12} strokeWidth={2.5} />
+                      </span>
+                      <span className="text-ink font-medium">
+                        AC Conference &amp; Banquet Hall <span className="font-normal text-ink-2">(AV setup, presentation screen &amp; Wi-Fi)</span>
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#A7834F]/15 text-[#A7834F] mt-0.5">
+                        <Check size={12} strokeWidth={2.5} />
+                      </span>
+                      <span className="text-ink font-medium">
+                        Expansive Outdoor Party Lawns <span className="font-normal text-ink-2">(Manicured green spaces &amp; shaded gazebos)</span>
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#A7834F]/15 text-[#A7834F] mt-0.5">
+                        <Check size={12} strokeWidth={2.5} />
+                      </span>
+                      <span className="text-ink font-medium">
+                        Swimming Pool Access <span className="font-normal text-ink-2">(Curved lagoon pool with sun loungers)</span>
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#A7834F]/15 text-[#A7834F] mt-0.5">
+                        <Check size={12} strokeWidth={2.5} />
+                      </span>
+                      <span className="text-ink font-medium">
+                        Fresh Farm Kitchen Buffet Dining <span className="font-normal text-ink-2">(Curated Veg &amp; Non-Veg spreads)</span>
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#A7834F]/15 text-[#A7834F] mt-0.5">
+                        <Check size={12} strokeWidth={2.5} />
+                      </span>
+                      <span className="text-ink font-medium">
+                        Dedicated Event Coordination <span className="font-normal text-ink-2">(Tailored seating &amp; setup assistance)</span>
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* CTAs */}
+                <div className="mt-6 pt-5 border-t border-ink/10 flex items-center justify-between gap-3 flex-wrap">
+                  <div className="text-xs text-ink-2">
+                    <span className="block font-semibold text-ink">From ₹799 + GST</span>
+                    <span>10 to 200 Guests</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
                     <a
                       href={corporateWa}
                       target="_blank"
@@ -403,63 +496,217 @@ export default function Packages() {
                     >
                       <MessageCircle size={15} strokeWidth={1.8} aria-hidden="true" /> Enquire on WhatsApp
                     </a>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            {/* Package 2: Family & Friends Get-Togethers */}
-            <article className="group flex flex-col rounded-sign overflow-hidden border border-ink/10 bg-card shadow-sm hover:shadow-md transition-all duration-300">
-              <div className="relative aspect-[16/10] overflow-hidden bg-wall">
-                <Photo
-                  photo={PHOTOS.outdoorEventLawn || PHOTOS.pergolaLawn}
-                  night="nightLawn"
-                  sizes="(min-width: 768px) 48vw, 100vw"
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-                <span className="absolute top-4 left-4 rounded-full bg-[#A7834F]/90 backdrop-blur-md px-3.5 py-1 text-xs font-medium text-white tracking-wide flex items-center gap-1.5">
-                  <Users size={13} aria-hidden="true" /> 40 to 200 Guests
-                </span>
-              </div>
-              <div className="p-6 sm:p-8 flex flex-col flex-1">
-                <div className="flex items-center justify-between gap-4">
-                  <h3 className="text-2xl font-semibold text-ink tracking-[-0.02em]">
-                    Family & Friends Get-Togethers
-                  </h3>
-                  <span className="text-xs uppercase tracking-wider text-ink-2 font-medium">40 – 200 Guests</span>
-                </div>
-
-                <p className="mt-3 text-ink-2 text-sm sm:text-base leading-relaxed flex-1">
-                  From birthdays and anniversaries to reunions and family celebrations, enjoy beautiful indoor spaces and expansive outdoor lawns for gatherings of 40 to 200 guests, complete with lunch or dinner.
-                </p>
-
-                <div className="mt-6 pt-5 border-t border-ink/10 flex flex-wrap gap-2 text-xs text-ink-2">
-                  <span className="rounded-full bg-ink/[0.05] px-3 py-1 font-medium">Expansive Party Lawns</span>
-                  <span className="rounded-full bg-ink/[0.05] px-3 py-1 font-medium">Gazebos & Shaded Seating</span>
-                  <span className="rounded-full bg-ink/[0.05] px-3 py-1 font-medium">Swimming Pool Access</span>
-                  <span className="rounded-full bg-ink/[0.05] px-3 py-1 font-medium">Children's Play Area</span>
-                  <span className="rounded-full bg-ink/[0.05] px-3 py-1 font-medium">Veg & Non-Veg Spreads</span>
-                </div>
-
-                <div className="mt-6 pt-5 border-t border-ink/10 flex items-center justify-between gap-4 flex-wrap">
-                  <div>
-                    <span className="text-xs text-ink-2 block">Starting from</span>
-                    <span className="text-xl font-semibold text-ink">₹799</span>
-                    <span className="text-xs text-ink-2"> / person + GST</span>
-                  </div>
-                  <div className="flex items-center gap-3">
                     <a
-                      href={familyWa}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="btn-act text-xs sm:text-sm py-2 px-4 flex items-center gap-1.5"
+                      href={CONTACT.eventsPhoneHref}
+                      className="btn-line text-xs sm:text-sm py-2 px-3.5 hidden sm:inline-flex items-center gap-1.5"
                     >
-                      <MessageCircle size={15} strokeWidth={1.8} aria-hidden="true" /> Enquire on WhatsApp
+                      <Phone size={14} strokeWidth={1.8} aria-hidden="true" /> Call
                     </a>
                   </div>
                 </div>
               </div>
             </article>
+
+            {/* ========================================================= */}
+            {/* CARD 2: DAY-OUT PACKAGE (Individual & Team Options)       */}
+            {/* ========================================================= */}
+            <article className="group flex flex-col rounded-sign overflow-hidden border-2 border-[#A7834F]/40 bg-card shadow-sm hover:shadow-md transition-all duration-300">
+              {/* Image with Tag & Timings */}
+              <div className="relative aspect-[16/10] overflow-hidden bg-wall">
+                <Photo
+                  photo={PHOTOS.poolSunset}
+                  sizes="(min-width: 1024px) 48vw, 100vw"
+                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <span className="absolute top-4 left-4 rounded-full bg-[#172A22]/90 backdrop-blur-md px-3.5 py-1 text-xs font-semibold text-[#E5CA8F] tracking-wide flex items-center gap-1.5 border border-[#A7834F]/40 shadow-xs">
+                  <Sun size={13} aria-hidden="true" /> Day-Out Package
+                </span>
+                <span className="absolute top-4 right-4 rounded-full bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-medium text-white/90">
+                  09:30 AM – 06:30 PM
+                </span>
+              </div>
+
+              <div className="p-6 sm:p-8 flex flex-col flex-1">
+                <div>
+                  <div className="flex items-center justify-between gap-4">
+                    <h3 className="text-2xl sm:text-3xl font-semibold text-ink tracking-[-0.02em]">
+                      Day-Out Package
+                    </h3>
+                  </div>
+
+                  {/* Sub-Tabs: Individual Package vs. Team Package (Future) */}
+                  <div className="mt-4 flex rounded-xl bg-ink/[0.04] p-1 border border-ink/8">
+                    <button
+                      type="button"
+                      onClick={() => setDayOutTab('individual')}
+                      className={`flex-1 py-2 px-3 rounded-lg text-xs font-semibold transition-all ${
+                        dayOutTab === 'individual'
+                          ? 'bg-card text-ink shadow-xs border border-ink/10 font-bold'
+                          : 'text-ink-2 hover:text-ink'
+                      }`}
+                    >
+                      Individual Package
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setDayOutTab('team')}
+                      className={`flex-1 py-2 px-3 rounded-lg text-xs font-semibold transition-all flex items-center justify-center gap-1.5 ${
+                        dayOutTab === 'team'
+                          ? 'bg-card text-ink shadow-xs border border-ink/10 font-bold'
+                          : 'text-ink-2 hover:text-ink'
+                      }`}
+                    >
+                      <span>Team Package</span>
+                      <span className="text-[0.62rem] uppercase px-1.5 py-0.5 rounded-full bg-amber-500/20 text-amber-800 dark:text-amber-400 font-bold">
+                        Future
+                      </span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* TAB 1: INDIVIDUAL PACKAGE (ACTIVE) */}
+                {dayOutTab === 'individual' && (
+                  <div className="flex flex-col flex-1 mt-4">
+                    {/* Dual Pricing Grid: Veg 999 + GST / Non-Veg 1,199 + GST */}
+                    <div className="grid grid-cols-2 gap-3 p-3 rounded-xl bg-ink/[0.03] border border-ink/8 text-center">
+                      <div className="p-3 rounded-lg bg-card border border-ink/5 shadow-2xs">
+                        <span className="text-[0.68rem] uppercase tracking-wider font-bold text-emerald-700 dark:text-emerald-400 block mb-1">
+                          🌱 Vegetarian
+                        </span>
+                        <div className="flex items-baseline justify-center gap-1">
+                          <span className="text-2xl sm:text-3xl font-bold text-ink">₹999</span>
+                        </div>
+                        <span className="text-[0.7rem] text-ink-2 block mt-0.5">+ GST / person</span>
+                      </div>
+
+                      <div className="p-3 rounded-lg bg-card border border-ink/5 shadow-2xs">
+                        <span className="text-[0.68rem] uppercase tracking-wider font-bold text-amber-800 dark:text-amber-400 block mb-1">
+                          🍗 Non-Vegetarian
+                        </span>
+                        <div className="flex items-baseline justify-center gap-1">
+                          <span className="text-2xl sm:text-3xl font-bold text-ink">₹1,199</span>
+                        </div>
+                        <span className="text-[0.7rem] text-ink-2 block mt-0.5">+ GST / person</span>
+                      </div>
+                    </div>
+
+                    {/* Exact Inclusions from User Diagram */}
+                    <div className="mt-5 pt-4 border-t border-ink/10 flex-1">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-[#A7834F] block mb-3">
+                        Package Inclusions:
+                      </span>
+                      <ul className="grid sm:grid-cols-2 gap-2.5 text-xs sm:text-sm text-ink-2">
+                        <li className="flex items-center gap-2">
+                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#A7834F]/15 text-[#A7834F]">
+                            <Check size={12} strokeWidth={2.5} />
+                          </span>
+                          <span className="text-ink font-medium">Swimming pool</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#A7834F]/15 text-[#A7834F]">
+                            <Check size={12} strokeWidth={2.5} />
+                          </span>
+                          <span className="text-ink font-medium">Welcome drink</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#A7834F]/15 text-[#A7834F]">
+                            <Check size={12} strokeWidth={2.5} />
+                          </span>
+                          <span className="text-ink font-medium">Lunch</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#A7834F]/15 text-[#A7834F]">
+                            <Check size={12} strokeWidth={2.5} />
+                          </span>
+                          <span className="text-ink font-medium">Access to Gym</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#A7834F]/15 text-[#A7834F]">
+                            <Check size={12} strokeWidth={2.5} />
+                          </span>
+                          <span className="text-ink font-medium">Access to Indoor Games</span>
+                        </li>
+                        <li className="flex items-center gap-2 sm:col-span-2">
+                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#A7834F]/15 text-[#A7834F]">
+                            <Check size={12} strokeWidth={2.5} />
+                          </span>
+                          <span className="text-ink font-medium">
+                            Hi-tea <span className="font-normal text-ink-2">(Tea or Coffee with one snack)</span>
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    {/* CTAs */}
+                    <div className="mt-6 pt-5 border-t border-ink/10 flex items-center justify-between gap-3 flex-wrap">
+                      <div className="text-xs text-ink-2">
+                        <span className="block font-semibold text-ink">From ₹999 + GST</span>
+                        <span>09:30 AM to 06:30 PM</span>
+                      </div>
+                      <div className="flex items-center gap-2.5">
+                        <a
+                          href={dayOutWa}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="btn-act text-xs sm:text-sm py-2 px-4 flex items-center gap-1.5"
+                        >
+                          <MessageCircle size={15} strokeWidth={1.8} aria-hidden="true" /> Book on WhatsApp
+                        </a>
+                        <a
+                          href={CONTACT.phoneHref}
+                          className="btn-line text-xs sm:text-sm py-2 px-3.5 hidden sm:inline-flex items-center gap-1.5"
+                        >
+                          <Phone size={14} strokeWidth={1.8} aria-hidden="true" /> Call
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* TAB 2: TEAM PACKAGE (FUTURE NOT NOW) */}
+                {dayOutTab === 'team' && (
+                  <div className="flex flex-col flex-1 mt-4">
+                    <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/25 text-left mb-4">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-900 dark:text-amber-300 font-bold text-[0.7rem] uppercase tracking-wider mb-2">
+                        Future Offering · Not Available Now
+                      </span>
+                      <h4 className="text-lg font-semibold text-ink">
+                        Team Day-Out Package
+                      </h4>
+                      <p className="mt-1.5 text-xs sm:text-sm text-ink-2 leading-relaxed">
+                        Curated for corporate groups, team sports days, and offsite celebrations with dedicated lawn spaces, team-building activities, and custom group menus.
+                      </p>
+                    </div>
+
+                    <div className="p-4 rounded-xl border border-dashed border-ink/15 bg-ink/[0.02] flex-1">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-ink block mb-2">
+                        Status Note:
+                      </span>
+                      <p className="text-xs text-ink-2 leading-relaxed">
+                        Online package bookings for Team Day-Out are planned for future release. In the meantime, custom team packages and corporate group bookings are accommodated on direct request with our events team.
+                      </p>
+                    </div>
+
+                    {/* CTAs */}
+                    <div className="mt-6 pt-5 border-t border-ink/10 flex items-center justify-between gap-3 flex-wrap">
+                      <div className="text-xs text-ink-2">
+                        <span className="block font-semibold text-ink">Team Outings</span>
+                        <span>Custom Quote on Request</span>
+                      </div>
+                      <a
+                        href={teamWa}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="btn-act text-xs sm:text-sm py-2 px-4 flex items-center gap-1.5"
+                      >
+                        <MessageCircle size={15} strokeWidth={1.8} aria-hidden="true" /> Inquire for Teams
+                      </a>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </article>
+
           </div>
         </div>
       </section>
@@ -618,31 +865,31 @@ export default function Packages() {
                 <div className="flex items-baseline justify-between gap-6 border-b border-ink/10 py-4">
                   <dt>
                     <span className="block font-semibold text-ink">Package Pricing</span>
-                    <span className="text-xs text-ink-2">Per person, with lunch or dinner buffet</span>
+                    <span className="text-xs text-ink-2">Day-Out from ₹999 + GST • Events from ₹799 + GST</span>
                   </dt>
                   <dd className="text-right">
-                    <span className="text-2xl sm:text-3xl font-semibold text-ink">₹799</span>
+                    <span className="text-xl sm:text-2xl font-semibold text-ink">From ₹799</span>
                     <span className="text-xs text-ink-2 ml-1.5">+ GST</span>
                   </dd>
                 </div>
 
                 <div className="flex items-baseline justify-between gap-6 border-b border-ink/10 py-4">
                   <dt>
-                    <span className="block font-semibold text-ink">Guest Capacity</span>
-                    <span className="text-xs text-ink-2">Indoor conference space &amp; outdoor party lawn</span>
+                    <span className="block font-semibold text-ink">Day-Out Inclusions</span>
+                    <span className="text-xs text-ink-2">Veg (₹999) / Non-Veg (₹1,199) + GST</span>
                   </dt>
-                  <dd className="text-base sm:text-lg font-semibold text-ink text-right">
-                    10 to 200 Guests
+                  <dd className="text-xs sm:text-sm text-ink-2 text-right">
+                    Pool Access • Welcome Drink • Lunch • Gym • Indoor Games • Hi-Tea
                   </dd>
                 </div>
 
                 <div className="flex items-baseline justify-between gap-6 border-b border-ink/10 py-4">
                   <dt>
-                    <span className="block font-semibold text-ink">Package Inclusions</span>
-                    <span className="text-xs text-ink-2">Access to venues &amp; dining</span>
+                    <span className="block font-semibold text-ink">Events &amp; Celebrations</span>
+                    <span className="text-xs text-ink-2">Indoor conference space &amp; outdoor party lawn</span>
                   </dt>
-                  <dd className="text-xs sm:text-sm text-ink-2 text-right">
-                    Outdoor Lawn Areas • Banquet Space • Buffet Lunch &amp; Dinner
+                  <dd className="text-base sm:text-lg font-semibold text-ink text-right">
+                    10 to 200 Guests
                   </dd>
                 </div>
               </dl>
